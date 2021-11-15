@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_debug.c                                         :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:51:23 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:01:26 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 14:43:19 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_print_stack(t_stack *stack)
 	i = stack->top;
 	printf("Stack %c\n", stack->identifier);
 	printf("Size : %d\n", stack->size);
+	printf("Top : %d\n", stack->top);
 	while (i >= 0)
 		printf("%d\n", stack->arr[i--]);
+	printf("\n");
 }

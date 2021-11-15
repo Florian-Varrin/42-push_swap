@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:17:44 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 14:40:56 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ t_stack	*ft_create_stack(int size, char identifier)
 	return (stack);
 }
 
+t_stack	*ft_fill_stack(t_stack *stack, int n)
+{
+	if (stack->top == stack->size)
+		return (stack);
+	stack->top++;
+	stack->arr[stack->top] = n;
+	return (stack);
+}
+
 t_stack	*ft_init_stack(int size, char **content, char identifier)
 {
 	int			i;
@@ -46,7 +55,7 @@ t_stack	*ft_init_stack(int size, char **content, char identifier)
 	while (i < size)
 	{
 		n = ft_atoi(content[i++]);
-		ft_push_stack(stack, n);
+		ft_fill_stack(stack, n);
 	}
 	return (stack);
 }

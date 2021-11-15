@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:18:06 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 14:37:45 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 #include <stdlib.h>
 
 
-t_stack	*ft_push_stack(t_stack *stack, int n)
+void	ft_push_stack(t_stack *stack_from, t_stack *stack_to)
 {
-	if (stack->top == stack->size)
-		return (stack);
-	stack->top++;
-	stack->arr[stack->top] = n;
-	return (stack);
+	if (stack_from->top == -1)
+		return ;
+	stack_to->arr[++stack_to->top] = stack_from->arr[stack_from->top--];
 }
