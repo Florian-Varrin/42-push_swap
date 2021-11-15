@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:42:47 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 15:09:19 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(int argc, char **argv)
 
 	stack_a = ft_init_stack(argc - 1, &argv[1], 'a');
 	stack_b = ft_create_stack(argc - 1, 'b');
+	if (stack_a->size == 2)
+		ft_sort_two(stack_a);
+	else if (stack_a->size == 3)
+		ft_sort_three(stack_a);
+
 	ft_print_stack(stack_a);
-	ft_rotate_stack(stack_a);
-	ft_print_stack(stack_a);
-	ft_push_stack(stack_a, stack_b);
-	ft_print_stack(stack_a);
-	ft_print_stack(stack_b);
 	ft_destroy_stack(stack_a);
 	ft_destroy_stack(stack_b);
 	return (0);

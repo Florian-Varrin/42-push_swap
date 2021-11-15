@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:59:33 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 15:18:29 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void		ft_rotate_stack(t_stack *stack);
 void		ft_rotate_both_stack(t_stack *stack_a, t_stack *stack_b);
 void		ft_reverse_rotate_stack(t_stack *stack);
 void		ft_reverse_rotate_both_stack(t_stack *stack_a, t_stack *stack_b);
+// Sorting
+void		ft_sort_two(t_stack *stack);
+void		ft_sort_three(t_stack *stack);
+// Utils
+_Bool		stack_is_sorted(t_stack *stack);
+int			stack_max(t_stack *stack);
+int			stack_min(t_stack *stack);
 // Debug
 void		ft_print_stack(t_stack *stack);
 #endif
