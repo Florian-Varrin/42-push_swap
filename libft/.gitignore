@@ -1,6 +1,0 @@
-*.swp
-*.swo
-*.o
-libft.a
-.cache
-compile_commands.json
