@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/11/09 18:21:55 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/11/15 13:52:36 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ ROOT_DIR		?= $(shell pwd)
 SRC_DIR			= ${ROOT_DIR}/srcs/
 HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
-SRC			= $(addprefix ${SRC_DIR}, main.c ft_stack.c)
+SRC			= $(addprefix ${SRC_DIR}, main.c ft_stack.c ft_debug.c)
 OBJ			= $(SRC:.c=.o)
 NAME 			= push_swap
 NORM_BIN		= norminette
@@ -28,7 +28,7 @@ LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 
 ${NAME}:	${OBJ}
 		@make -C ${LIBFT_DIR} all || true
-		${CC} ${CFLAGS} ${LIBFT_FLAGS} ${OBJ} -o ${NAME}
+		${CC} ${CFLAGS} ${OBJ} ${LIBFT_FLAGS} -o ${NAME}
 
 all: 		${NAME}
 

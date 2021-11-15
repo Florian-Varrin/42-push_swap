@@ -6,11 +6,10 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/09 18:14:21 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 13:50:36 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
 #include "libft.h"
 #include "push_swap.h"
 
@@ -21,7 +20,7 @@ t_stack	*ft_create_stack(int size, char identifier)
 {
 	t_stack		*stack;
 
-	stack = (t_stack*)ft_calloc(sizeof(t_stack), 1);
+	stack = (t_stack *)ft_calloc(sizeof(t_stack), 1);
 	if (!stack)
 		return (NULL);
 	stack->identifier = identifier;
@@ -55,7 +54,7 @@ t_stack	*ft_init_stack(int size, char **content, char identifier)
 	stack = ft_create_stack(size, identifier);
 	while (i < size)
 	{
-		n = ft_atoi(content[i]);
+		n = ft_atoi(content[i++]);
 		ft_push_stack(stack, n);
 	}
 	return (stack);
@@ -70,7 +69,7 @@ t_stack	*ft_destroy_stack(t_stack *stack)
 	return (NULL);
 }
 
-void	ft_printstack(t_stack *stack)
+void	ft_print_stack(t_stack *stack)
 {
 	int		i;
 
