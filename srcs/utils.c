@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 15:24:27 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 15:51:42 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ _Bool	stack_is_sorted(t_stack *stack)
 {
 	int		i;
 
-	i = 0;
-	while (i < stack->top)
+	i = stack->top;
+	while (i > 0)
 	{
-		if (stack->arr[i] > stack->arr[i + 1])
+		if (stack->arr[i] > stack->arr[i - 1])
 			return (false);
-		i++;
+		i--;
 	}
 	return (true);
 }

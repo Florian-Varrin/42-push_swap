@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:40:56 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 15:53:56 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_stack	*ft_init_stack(int size, char **content, char identifier)
 	int			n;
 	t_stack		*stack;
 
-	i = 0;
+	i = size - 1;
 	stack = ft_create_stack(size, identifier);
-	while (i < size)
+	while (i >= 0)
 	{
-		n = ft_atoi(content[i++]);
+		n = ft_atoi(content[i--]);
 		ft_fill_stack(stack, n);
 	}
 	return (stack);
