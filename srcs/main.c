@@ -6,9 +6,12 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/07 16:50:09 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/09 17:53:48 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
