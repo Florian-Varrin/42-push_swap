@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:54:42 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:50:50 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 16:10:01 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	_swaper(t_stack *stack)
 void	ft_swap_stack(t_stack *stack)
 {
 	_swaper(stack);
-	ft_putchar_fd('p', 1);
+	ft_putchar_fd('s', 1);
 	ft_putchar_fd(stack->identifier, 1);
 	ft_putchar_fd('\n', 1);
 }
