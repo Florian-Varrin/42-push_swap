@@ -6,14 +6,14 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:22:16 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:30:47 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 14:58:49 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	ft_rotate_stack(t_stack *stack)
+void	_roter(t_stack *stack)
 {
 	int		i;
 	int		tmp;
@@ -28,17 +28,17 @@ void	ft_rotate_stack(t_stack *stack)
 	stack->arr[i] = tmp;
 }
 
-void	ft_reverse_rotate_stack(t_stack *stack)
+void	ft_rotate_stack(t_stack *stack)
 {
-	int		i;
-	int		tmp;
+	_roter(stack);
+	ft_putchar_fd('r', 1);
+	ft_putchar_fd(stack->identifier, 1);
+	ft_putchar_fd('\n', 1);
+}
 
-	i = 0;
-	tmp = stack->arr[i];
-	while (i < stack->top)
-	{
-		stack->arr[i] = stack->arr[i + 1];
-		i++;
-	}
-	stack->arr[i] = tmp;
+void	ft_rotate_both_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	_roter(stack_a);
+	_roter(stack_b);
+	ft_putstr_fd("rr\n", 1);
 }

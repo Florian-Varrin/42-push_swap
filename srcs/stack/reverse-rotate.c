@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   reverse-rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 13:54:42 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:50:50 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/15 14:56:10 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/11/15 14:56:47 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
 #include "libft.h"
 #include "push_swap.h"
 
-void	_swaper(t_stack *stack)
+void	_reverse_roter(t_stack *stack)
 {
+	int		i;
 	int		tmp;
-	int		top;
 
-	top = stack->top;
-	tmp = stack->arr[top];
-	stack->arr[top] = stack->arr[top - 1];
-	stack->arr[top - 1] = tmp;
+	i = 0;
+	tmp = stack->arr[i];
+	while (i < stack->top)
+	{
+		stack->arr[i] = stack->arr[i + 1];
+		i++;
+	}
+	stack->arr[i] = tmp;
 }
 
-void	ft_swap_stack(t_stack *stack)
+void	ft_reverse_rotate_stack(t_stack *stack)
 {
-	_swaper(stack);
-	ft_putchar_fd('p', 1);
+	_reverse_roter(stack);
+	ft_putstr_fd("rr", 1);
 	ft_putchar_fd(stack->identifier, 1);
 	ft_putchar_fd('\n', 1);
 }
 
-void	ft_swap_both_stack(t_stack *stack_a, t_stack *stack_b)
+void	ft_reverse_rotate_both_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	_swaper(stack_a);
-	_swaper(stack_b);
-	ft_putstr_fd("ss\n", 1);
+	_reverse_roter(stack_a);
+	_reverse_roter(stack_b);
+	ft_putstr_fd("rrr\n", 1);
 }
