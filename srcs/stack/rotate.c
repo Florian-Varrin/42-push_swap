@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:27:57 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/15 14:22:16 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/11/15 14:30:47 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_rotate_stack(t_stack *stack)
 {
-	t_stack		*stack;
+	int		i;
+	int		tmp;
 
-	stack = ft_init_stack(argc - 1, &argv[1], 'A');
-	ft_print_stack(stack);
-	ft_rotate_stack(stack);
-	ft_print_stack(stack);
-	ft_destroy_stack(stack);
-	return (0);
+	i = stack->top;
+	tmp = stack->arr[i];
+	while (i > 0)
+	{
+		stack->arr[i] = stack->arr[i - 1];
+		i--;
+	}
+	stack->arr[i] = tmp;
+}
+
+void	ft_reverse_rotate_stack(t_stack *stack)
+{
+	int		i;
+	int		tmp;
+
+	i = 0;
+	tmp = stack->arr[i];
+	while (i < stack->top)
+	{
+		stack->arr[i] = stack->arr[i + 1];
+		i++;
+	}
+	stack->arr[i] = tmp;
 }

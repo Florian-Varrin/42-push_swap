@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:27:57 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/11/15 14:22:03 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_sort_two(t_stack *stack)
 {
-	t_stack		*stack;
-
-	stack = ft_init_stack(argc - 1, &argv[1], 'A');
-	ft_print_stack(stack);
-	ft_rotate_stack(stack);
-	ft_print_stack(stack);
-	ft_destroy_stack(stack);
-	return (0);
+	if (stack->arr[0] < stack->arr[1])
+		return ;
 }

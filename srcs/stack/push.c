@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 14:27:57 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/11/15 14:18:06 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	t_stack		*stack;
+#include <stdio.h>
+#include <stdlib.h>
 
-	stack = ft_init_stack(argc - 1, &argv[1], 'A');
-	ft_print_stack(stack);
-	ft_rotate_stack(stack);
-	ft_print_stack(stack);
-	ft_destroy_stack(stack);
-	return (0);
+
+t_stack	*ft_push_stack(t_stack *stack, int n)
+{
+	if (stack->top == stack->size)
+		return (stack);
+	stack->top++;
+	stack->arr[stack->top] = n;
+	return (stack);
 }

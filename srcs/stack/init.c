@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 13:50:36 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/15 14:17:44 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,6 @@ t_stack	*ft_create_stack(int size, char identifier)
 	return (stack);
 }
 
-t_stack	*ft_push_stack(t_stack *stack, int n)
-{
-	if (stack->top == stack->size)
-		return stack;
-	stack->top++;
-	stack->arr[stack->top] = n;
-	return (stack);
-}
-
 t_stack	*ft_init_stack(int size, char **content, char identifier)
 {
 	int			i;
@@ -67,15 +58,4 @@ t_stack	*ft_destroy_stack(t_stack *stack)
 	if (stack)
 		free(stack);
 	return (NULL);
-}
-
-void	ft_print_stack(t_stack *stack)
-{
-	int		i;
-
-	i = stack->top;
-	printf("Stack %c\n", stack->identifier);
-	printf("Size : %d\n", stack->size);
-	while (i >= 0)
-		printf("%d\n", stack->arr[i--]);
 }
