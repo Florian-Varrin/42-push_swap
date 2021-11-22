@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/18 16:44:54 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:18:37 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ void	ft_sort_until_five(t_stack *stack_a, t_stack *stack_b)
 	while ((i++) < stack_a->size - 3)
 		ft_push_stack(stack_a, stack_b);
 	ft_sort_three(stack_a);
-	ft_print_stack(stack_a, "After sort three");
 	ft_instert_in_sorted_stack(stack_b, stack_a);
 }

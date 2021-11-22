@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:22:16 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 16:06:36 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:20:11 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	ft_rotate_n_times(t_stack *stack, int n)
 	int		i;
 
 	i = 0;
-	while (i < n) {
+	while (i < n)
+	{
 		ft_rotate_stack(stack);
 		i++;
 	}

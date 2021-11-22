@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/15 15:51:42 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:22:08 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	stack_max(t_stack *stack)
 
 	i = 0;
 	max_index = i;
-	while (i <= stack->top) {
+	while (i <= stack->top)
+	{
 		if (stack->arr[i] > stack->arr[max_index])
 			max_index = i;
 		i++;
@@ -51,7 +52,8 @@ int	stack_min(t_stack *stack)
 
 	i = 0;
 	min_index = i;
-	while (i <= stack->top) {
+	while (i <= stack->top)
+	{
 		if (stack->arr[i] < stack->arr[min_index])
 			min_index = i;
 		i++;
