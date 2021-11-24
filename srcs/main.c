@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 15:06:34 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 15:11:16 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_stack		*stack_b;
 
 	ft_parse_arg(&stack_a, &stack_b, argc, argv);
-	ft_print_stack(stack_a, "Init");
+	/* ft_print_stack(stack_a, "Init"); */
 	if (stack_a->size == 2)
 		ft_sort_two(stack_a);
 	else if (stack_a->size == 3)
