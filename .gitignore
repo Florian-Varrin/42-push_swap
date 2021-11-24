@@ -6,4 +6,4 @@
 compile_commands.json
 .cache
 push_swap
-checker_*
+checker*

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/22 13:18:37 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 14:55:22 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_sort_until_five(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
 
-	if (stack_is_sorted(stack_a) && stack_b->top >= 0)
+	if (stack_is_sorted(stack_a) && stack_b->top < 0)
 		return ;
 	i = 0;
 	while ((i++) < stack_a->size - 3)

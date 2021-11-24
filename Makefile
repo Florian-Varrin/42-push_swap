@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/11/18 13:03:59 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/11/24 13:31:55 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ ROOT_DIR		?= $(shell pwd)
 SRC_DIR			= ${ROOT_DIR}/srcs/
 HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
-SRC			= $(addprefix ${SRC_DIR}, main.c stack/init.c stack/push.c \
+SRC			= $(addprefix ${SRC_DIR}, main.c error.c parse.c stack/init.c stack/push.c \
 			  stack/swap.c stack/rotate.c stack/reverse-rotate.c debug.c \
 			  stack/insert.c small_sort.c utils.c)
 OBJ			= $(SRC:.c=.o)
@@ -22,7 +22,7 @@ NAME 			= push_swap
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}/includes
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 
