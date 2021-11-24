@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/22 13:22:08 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 17:21:55 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,35 @@ _Bool	stack_is_sorted(t_stack *stack)
 		if (stack->arr[i] > stack->arr[i - 1])
 			return (false);
 		i--;
+	}
+	return (true);
+}
+
+_Bool	stack_is_ordered(t_stack *stack)
+{
+	int		min_index;
+	int		i;
+
+	if (stack_is_sorted(stack))
+		return (true);
+	min_index = stack_min(stack);
+	if (min_index != 0 && stack_max(stack) != min_index + 1)
+		return (false);
+	i = min_index;
+	while (i != min_index + 1)
+	{
+		if (i == 0)
+		{
+			if (stack->arr[i] > stack->arr[stack->top])
+				return (false);
+			i = stack->top;
+		}
+		else
+		{
+			if (stack->arr[i] > stack->arr[i - 1])
+				return (false);
+			i--;
+		}
 	}
 	return (true);
 }

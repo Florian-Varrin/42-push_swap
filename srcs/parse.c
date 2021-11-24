@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:14:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 14:13:52 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 17:05:33 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ _Bool	ft_check_args(char **args, int *size)
 	int		j;
 
 	i = 0;
-	while (args[i]) {
+	while (args[i])
+	{
 		j = 0;
 		while (args[i][j])
 		{
@@ -59,8 +60,8 @@ char	**ft_parse_single_arg(char *str, char **args, int *size)
 char	**ft_parse_multiple_arg(char **argv, int argc, char **args, int *size)
 {
 	int		i;
-	args = (char **)ft_calloc(sizeof(char *), argc);
 
+	args = (char **)ft_calloc(sizeof(char *), argc);
 	i = 0;
 	while (i < argc)
 	{
@@ -75,7 +76,8 @@ char	**ft_parse_multiple_arg(char **argv, int argc, char **args, int *size)
 	return (args);
 }
 
-void	ft_parse_arg(t_stack **stack_a, t_stack **stack_b, int argc, char **argv)
+void	ft_parse_arg(t_stack **stack_a, t_stack **stack_b,
+			int argc, char **argv)
 {
 	char	**args;
 	int		size;

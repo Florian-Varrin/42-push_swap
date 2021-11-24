@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 14:52:03 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 17:23:00 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		return (-stack_max(stack));
 	i_rotate = 0;
 	while (!(stack->arr[stack->top - i_rotate] > number_to_insert
-			&& stack->arr[ft_get_last_index(stack, i_rotate)] < number_to_insert))
+			&& stack->arr[ft_get_last_index(stack, i_rotate)]
+			< number_to_insert))
 		i_rotate++;
 	i_reverse = stack->top + 1 - i_rotate;
 	if (i_rotate < i_reverse)
@@ -41,7 +42,7 @@ int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 	return (-i_reverse);
 }
 
-void	ft_instert_in_sorted_stack(t_stack *stack_from, t_stack *stack_to)
+void	ft_instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
 {
 	int		number_to_insert;
 	int		rotation;

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 15:07:46 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 17:06:00 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_stack	*ft_fill_stack(t_stack *stack, int n)
 	int		i;
 
 	i = 0;
-	while (i <= stack->top) {
+	while (i <= stack->top)
+	{
 		if (stack->arr[i] == n)
 			ft_error(stack, NULL);
 		i++;

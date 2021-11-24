@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:06:28 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 13:12:42 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/24 17:04:39 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	ft_error(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a)	
+	if (stack_a)
 		ft_destroy_stack(stack_a);
-	if (stack_b)	
+	if (stack_b)
 		ft_destroy_stack(stack_b);
 	ft_putstr_fd("Error\n", 2);
 	exit(-1);
