@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 18:14:01 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/26 17:44:49 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ _Bool		stack_is_sorted(t_stack *stack);
 _Bool		stack_is_ordered(t_stack *stack);
 int			stack_max(t_stack *stack);
 int			stack_min(t_stack *stack);
-void		ft_swap_two_number(t_stack *stack_a, t_stack *stack_b, int bottom_index, int top_index);
+int		ft_swap_two_number(t_stack *stack_a, t_stack *stack_b, int bottom_index, int top_index);
 // Debug
 void		ft_print_stack(t_stack *stack, char *message);
 #endif
