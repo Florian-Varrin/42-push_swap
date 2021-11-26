@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 18:14:17 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/26 17:03:03 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ int	main(int argc, char **argv)
 
 	ft_parse_arg(&stack_a, &stack_b, argc, argv);
 	ft_print_stack(stack_a, "Init");
-	/* if (stack_a->size == 2) */
-	/* 	ft_sort_two(stack_a); */
-	/* else if (stack_a->size == 3) */
-	/* 	ft_sort_three(stack_a); */
-	/* else if (stack_a->size >= 4 && stack_a->size <= 5) */
-	/* 	ft_sort_until_five(stack_a, stack_b); */
-	/* else if (stack_a->size > 5) */
-	/* 	ft_sort_until_ten(stack_a, stack_b); */
-	ft_swap_two_number(stack_a, stack_b, 0, 2);
+	if (stack_a->size == 2)
+		ft_sort_two(stack_a);
+	else if (stack_a->size == 3)
+		ft_sort_three(stack_a);
+	else if (stack_a->size >= 4 && stack_a->size <= 5)
+		ft_sort_until_five(stack_a, stack_b);
+	else if (stack_a->size > 5)
+		ft_sort_until_ten(stack_a, stack_b);
 	ft_print_stack(stack_a, "End");
 	ft_destroy_stack(stack_a);
 	ft_destroy_stack(stack_b);

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 17:42:56 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/26 16:54:22 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	ft_sort_until_ten(t_stack *stack_a, t_stack *stack_b)
 	int		min_index;
 
 	sort_five = true;
-	while (stack_a->top >= 4) {
+	while (stack_a->top >= 4)
+	{
 		min_index = stack_min(stack_a);
 		if (stack_is_ordered(stack_a))
 		{
