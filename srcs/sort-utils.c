@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   sort-utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 13:06:28 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/24 17:04:39 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/27 10:58:17 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/11/27 11:01:03 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
-#include <stdlib.h>
 
-void	ft_error(t_stack *stack_a, t_stack *stack_b)
+void	ft_rotate_ordered_to_be_sorted(t_stack *stack)
 {
-	if (stack_a)
-		ft_destroy_stack(stack_a);
-	if (stack_b)
-		ft_destroy_stack(stack_b);
-	ft_putstr_fd("Error\n", 2);
-	exit(-1);
+	int		min_index;
+
+	min_index = stack_min(stack);
+	if (min_index < stack->size / 2)
+		ft_reverse_rotate_n_times(stack, min_index + 1);
+	else
+		ft_rotate_n_times(stack, stack->top - min_index);
 }

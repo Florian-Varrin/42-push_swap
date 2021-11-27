@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 17:56:28 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/26 17:57:40 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/11/27 16:17:23 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int	ft_swap_two_number(
 	int		rotations;
 	int		reverse_rotations;
 
+	if (bottom_index == top_index)
+		return (0);
+	if (bottom_index > top_index)
+		ft_swap(&bottom_index, &top_index);
 	total_r = 0;
 	if ((top_index == stack_a->top && bottom_index == 0)
 		|| top_index - 1 == bottom_index)
@@ -88,5 +92,7 @@ int	ft_swap_two_number(
 	rotations = stack_a->top + 1 - reverse_rotations;
 	total_r += ft_rotate_to_swap(stack_a, rotations, reverse_rotations);
 	ft_push_stack(stack_b, stack_a);
+	if (total_r >= stack_a->top)
+		return (total_r - stack_a->top);
 	return (total_r);
 }
