@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/27 14:29:16 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/01 10:54:44 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void		ft_sort_until_hundred(t_stack *stack_a, t_stack *stack_b);
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);
 _Bool		stack_is_ordered(t_stack *stack);
+_Bool		partition_is_sorted(t_stack *stack, int start, int end);
 int			stack_max(t_stack *stack);
 int			stack_min(t_stack *stack);
 void		ft_rotate_ordered_to_be_sorted(t_stack *stack);

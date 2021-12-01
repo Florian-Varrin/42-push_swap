@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/27 14:18:19 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:04:18 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "push_swap.h"
 
 #include <stdbool.h>
+#include <stdio.h>
 
 _Bool	stack_is_sorted(t_stack *stack)
 {
@@ -25,6 +26,28 @@ _Bool	stack_is_sorted(t_stack *stack)
 		if (stack->arr[i] > stack->arr[i - 1])
 			return (false);
 		i--;
+	}
+	return (true);
+}
+
+_Bool	partition_is_sorted(t_stack *stack, int start, int end)
+{
+	int		i;
+	int		number_of_checks;
+
+	if (start == end)
+		return (true);
+	if (start > end)
+		number_of_checks = start - end + 1;
+	else
+		number_of_checks = end - start;
+	i = end;
+	while (number_of_checks > 0)
+	{
+		if (stack->arr[i] > stack->arr[i - 1])
+			return (false);
+		i--;
+		number_of_checks--;
 	}
 	return (true);
 }

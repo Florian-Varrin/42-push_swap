@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/27 16:27:05 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:03:58 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@ int	main(int argc, char **argv)
 	t_stack		*stack_b;
 
 	ft_parse_arg(&stack_a, &stack_b, argc, argv);
-	/* ft_print_stack(stack_a, "Init"); */
 	if (stack_a->size == 2)
 		ft_sort_two(stack_a);
 	else if (stack_a->size == 3)
 		ft_sort_three(stack_a);
 	else if (stack_a->size >= 4 && stack_a->size <= 5)
 		ft_sort_until_five(stack_a, stack_b);
-	else if (stack_a->size > 5)
+	else if (stack_a->size > 5 && stack_a->size <= 10)
+		ft_sort_until_ten(stack_a, stack_b);
+	else
 		ft_sort_until_hundred(stack_a, stack_b);
-	/* ft_print_stack(stack_a, "End"); */
-	ft_destroy_stack(stack_a);
-	ft_destroy_stack(stack_b);
 	return (0);
 }
