@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/01 17:03:58 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/02 12:19:33 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ int	main(int argc, char **argv)
 		ft_sort_until_ten(stack_a, stack_b);
 	else
 		ft_sort_until_hundred(stack_a, stack_b);
+
+	ft_destroy_stack(stack_a);
+	ft_destroy_stack(stack_b);
 	return (0);
 }

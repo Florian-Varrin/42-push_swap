@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/11/29 13:21:06 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/02 12:32:20 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME 			= push_swap
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -g -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}/includes
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}/includes
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 
@@ -48,6 +48,3 @@ re:		fclean ${NAME}
 norm:		fclean
 		echo "\n\n"
 		${NORM_BIN} ${NORM_FLAGS} ${SRC}
-
-debug:		fclean
-		@make DEBUG=1
