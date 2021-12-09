@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_sort.c                                       :+:      :+:    :+:   */
+/*   small-sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/11/26 16:54:22 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/09 14:14:30 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	ft_sort_two(t_stack *stack)
 
 void	ft_sort_three(t_stack *stack)
 {
-	int		max;
+	int		max_index;
 
-	max = stack_max(stack);
+	max_index = stack_max_index(stack);
 	if (stack_is_sorted(stack))
 		return ;
-	if (max == 2)
+	if (max_index == 2)
 	{
 		ft_rotate_stack(stack);
 		ft_sort_three(stack);
@@ -74,7 +74,7 @@ void	ft_sort_until_ten(t_stack *stack_a, t_stack *stack_b)
 	sort_five = true;
 	while (stack_a->top >= 4)
 	{
-		min_index = stack_min(stack_a);
+		min_index = stack_min_index(stack_a);
 		if (stack_is_ordered(stack_a))
 		{
 			sort_five = false;

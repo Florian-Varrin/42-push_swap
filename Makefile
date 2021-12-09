@@ -6,9 +6,19 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/02 12:32:20 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/09 16:46:28 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+ifndef DEBUG
+	DEBUG		= 0
+endif
+
+ifeq (${DEBUG}, 1)
+	DEBUG_FLAGS	= -D DEBUG=${DEBUG} -Wno-unused-variable -g
+else
+	DEBUG_FLAGS	=
+endif
 
 ROOT_DIR		?= $(shell pwd)
 SRC_DIR			= ${ROOT_DIR}/srcs/
@@ -16,13 +26,13 @@ HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
 SRC			= $(addprefix ${SRC_DIR}, main.c error.c parse.c stack/init.c stack/push.c \
 			  stack/swap.c stack/rotate.c stack/reverse-rotate.c debug.c \
-			  stack/insert.c swap-in-stack.c sort-utils.c small_sort.c quick_sort.c utils.c)
+			  stack/insert.c swap-in-stack.c sort-utils.c small-sort.c quick-sort-2.c utils.c)
 OBJ			= $(SRC:.c=.o)
 NAME 			= push_swap
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}/includes
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}/includes ${DEBUG_FLAGS}
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 
@@ -48,3 +58,6 @@ re:		fclean ${NAME}
 norm:		fclean
 		echo "\n\n"
 		${NORM_BIN} ${NORM_FLAGS} ${SRC}
+
+debug:
+		@make -C ./ DEBUG=1 ${NAME} || true

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/01 10:54:44 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/09 14:12:09 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void		ft_sort_until_hundred(t_stack *stack_a, t_stack *stack_b);
 _Bool		stack_is_sorted(t_stack *stack);
 _Bool		stack_is_ordered(t_stack *stack);
 _Bool		partition_is_sorted(t_stack *stack, int start, int end);
-int			stack_max(t_stack *stack);
-int			stack_min(t_stack *stack);
+int			stack_max_index(t_stack *stack);
+int			stack_max_value(t_stack *stack);
+int			stack_min_index(t_stack *stack);
+int			stack_min_value(t_stack *stack);
 void		ft_rotate_ordered_to_be_sorted(t_stack *stack);
 int			ft_swap_two_number(t_stack *stack_a, t_stack *stack_b, int bottom_index, int top_index);
 // Debug

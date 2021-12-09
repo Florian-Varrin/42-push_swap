@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/01 17:04:18 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/09 14:13:31 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ _Bool	stack_is_ordered(t_stack *stack)
 
 	if (stack_is_sorted(stack))
 		return (true);
-	min_index = stack_min(stack);
-	if (min_index != 0 && stack_max(stack) != min_index + 1)
+	min_index = stack_min_index(stack);
+	if (min_index != 0 && stack_max_index(stack) != min_index + 1)
 		return (false);
 	i = min_index;
 	while (i != min_index + 1)
@@ -81,7 +81,7 @@ _Bool	stack_is_ordered(t_stack *stack)
 	return (true);
 }
 
-int	stack_max(t_stack *stack)
+int	stack_max_index(t_stack *stack)
 {
 	int		i;
 	int		max_index;
@@ -97,7 +97,15 @@ int	stack_max(t_stack *stack)
 	return (max_index);
 }
 
-int	stack_min(t_stack *stack)
+int	stack_max_value(t_stack *stack)
+{
+	int		max_index;
+	
+	max_index = stack_max_index(stack);
+	return (stack->arr[max_index]);
+}
+
+int	stack_min_index(t_stack *stack)
 {
 	int		i;
 	int		min_index;
@@ -111,4 +119,12 @@ int	stack_min(t_stack *stack)
 		i++;
 	}
 	return (min_index);
+}
+
+int	stack_min_value(t_stack *stack)
+{
+	int		min_index;
+	
+	min_index = stack_min_index(stack);
+	return (stack->arr[min_index]);
 }
