@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 14:13:31 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:48:48 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	stack_max_index(t_stack *stack)
 int	stack_max_value(t_stack *stack)
 {
 	int		max_index;
-	
+
 	max_index = stack_max_index(stack);
 	return (stack->arr[max_index]);
 }
@@ -124,7 +124,7 @@ int	stack_min_index(t_stack *stack)
 int	stack_min_value(t_stack *stack)
 {
 	int		min_index;
-	
+
 	min_index = stack_min_index(stack);
 	return (stack->arr[min_index]);
 }

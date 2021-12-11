@@ -6,11 +6,11 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 17:09:39 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:47:18 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include ";	libft.h"
 #include "push_swap.h"
 
 #include <stdio.h>
@@ -22,55 +22,50 @@ int	ft_get_last_index(t_stack *stack, int rotation)
 	return (stack->top - rotation + 1);
 }
 
-/* int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert) */
-/* { */
-/* 	int		i_rotate; */
-/* 	int		i_reverse; */
-
-/* 	if (number_to_insert < stack->arr[stack_min_index(stack)]) */
-/* 		return (stack->top - stack_min_index(stack)); */
-/* 	if (number_to_insert > stack->arr[stack_max_index(stack)]) */
-/* 		return (-stack_max_index(stack)); */
-/* 	i_rotate = 0; */
-/* 	while (!(stack->arr[stack->top - i_rotate] > number_to_insert */
-/* 			&& stack->arr[ft_get_last_index(stack, i_rotate)] */
-/* 			< number_to_insert)) */
-/* 		i_rotate++; */
-/* 	i_reverse = stack->top + 1 - i_rotate; */
-/* 	if (i_rotate < i_reverse) */
-/* 		return (i_rotate); */
-/* 	return (-i_reverse); */
-/* } */
-
 int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 {
-	int	reverse_rotations;
-	int	i;
+	int		i;
+	int		rotations;
+	int		reverse_rotations;
 
-	i = 0;
-	reverse_rotations = 0;
-	while (!(stack->arr[i] > number_to_insert && stack->arr[i + 1] < number_to_insert))
+	if (number_to_insert > stack_max_value(stack))
+		i = stack_max_index(stack);
+	else if (number_to_insert < stack_min_value(stack))
+		i = stack_min_index(stack);
+	else if (stack->arr[stack->top] > number_to_insert
+		&& stack->arr[0] < number_to_insert)
+		return (0);
+	else
 	{
-		i++;
-		reverse_rotations++;
+		i = 0;
+		while (!(stack->arr[i] > number_to_insert
+				&& stack->arr[i + 1] < number_to_insert))
+			i++;
 	}
-	return (rotations - 1);
+	reverse_rotations = i + 1;
+	rotations = stack->top - i;
+	if (rotations <= reverse_rotations)
+		return (rotations);
+	else
+		return (-reverse_rotations);
 }
 
 void	ft_instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
 {
 	int		number_to_insert;
-	int		rotation;
+	int		rotations;
 
 	while (stack_from->top != -1)
 	{
 		number_to_insert = stack_from->arr[stack_from->top];
-		rotation = ft_get_rotation_number_to_insert(stack_to, number_to_insert);
-		ft_printf("rotation %d\n", rotation);
-		if (rotation >= 0)
-			ft_rotate_n_times(stack_to, rotation);
+		rotations = ft_get_rotation_number_to_insert(
+				stack_to,
+				number_to_insert
+				);
+		if (rotations >= 0)
+			ft_rotate_n_times(stack_to, rotations);
 		else
-			ft_reverse_rotate_n_times(stack_to, -rotation);
+			ft_reverse_rotate_n_times(stack_to, -rotations);
 		ft_push_stack(stack_from, stack_to);
 	}
 	ft_rotate_ordered_to_be_sorted(stack_to);

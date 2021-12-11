@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 16:53:43 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 13:48:04 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	select_pivot(t_stack *stack, int *max_pivot, int *min_pivot)
 	*min_pivot = (*max_pivot + min_value) / 2;
 }
 
-void	separate_chunks(t_stack *stack_a, t_stack *stack_b)
+void	separate_chunks(t_stack *stack_from, t_stack *stack_to)
 {
 	int		operations;
 	int		rotations;
@@ -34,36 +34,32 @@ void	separate_chunks(t_stack *stack_a, t_stack *stack_b)
 	int		min_pivot;
 	int		max_pivot;
 
-	if (stack_a->top <= 4)
+	if (stack_from->top <= 4)
 	{
-		ft_sort_until_five(stack_a, stack_b);
+		ft_sort_until_five(stack_from, stack_to);
 		return ;
 	}
-	select_pivot(stack_a, &max_pivot, &min_pivot);
-	stack_size = stack_a->top + 1;
+	select_pivot(stack_from, &max_pivot, &min_pivot);
+	stack_size = stack_from->top + 1;
 	operations = 0;
 	rotations = 0;
 	while (operations < stack_size)
 	{
-		if (stack_a->arr[stack_a->top] > max_pivot)
-		{
-			ft_rotate_stack(stack_a);
-			operations++;
-		}
+		if (stack_from->arr[stack_from->top] > max_pivot)
+			ft_rotate_stack(stack_from);
 		else
 		{
-			ft_push_stack(stack_a, stack_b);
-			if (stack_b->arr[stack_b->top] > min_pivot)
+			ft_push_stack(stack_from, stack_to);
+			if (stack_to->arr[stack_to->top] > min_pivot)
 			{
-				ft_rotate_stack(stack_b);
+				ft_rotate_stack(stack_to);
 				rotations++;
 			}
-			operations++;
 		}
+		operations++;
 	}
-	ft_reverse_rotate_n_times(stack_b, rotations);
-	/* ft_print_stack(stack_a, "After separate"); */
-	separate_chunks(stack_a, stack_b);
+	ft_reverse_rotate_n_times(stack_to, rotations);
+	separate_chunks(stack_from, stack_to);
 }
 
 void	ft_sort_until_hundred(t_stack *stack_a, t_stack *stack_b)
@@ -72,6 +68,4 @@ void	ft_sort_until_hundred(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	separate_chunks(stack_a, stack_b);
 	ft_instert_in_ordered_stack(stack_b, stack_a);
-	/* ft_printf("max_pivot %d\n", max_pivot); */
-	/* ft_printf("min_pivot %d\n", min_pivot); */
 }
