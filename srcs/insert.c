@@ -6,23 +6,24 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 13:47:18 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 16:42:12 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ";	libft.h"
+#include "libft.h"
 #include "push_swap.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 
-int	ft_get_last_index(t_stack *stack, int rotation)
+int	get_last_index(t_stack *stack, int rotation)
 {
 	if (rotation == 0)
 		return (0);
 	return (stack->top - rotation + 1);
 }
 
-int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
+int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 {
 	int		i;
 	int		rotations;
@@ -50,7 +51,7 @@ int	ft_get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		return (-reverse_rotations);
 }
 
-void	ft_instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
+void	instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
 {
 	int		number_to_insert;
 	int		rotations;
@@ -58,15 +59,15 @@ void	ft_instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
 	while (stack_from->top != -1)
 	{
 		number_to_insert = stack_from->arr[stack_from->top];
-		rotations = ft_get_rotation_number_to_insert(
+		rotations = get_rotation_number_to_insert(
 				stack_to,
 				number_to_insert
 				);
 		if (rotations >= 0)
-			ft_rotate_n_times(stack_to, rotations);
+			rotate_n_times(stack_to, rotations, true);
 		else
-			ft_reverse_rotate_n_times(stack_to, -rotations);
-		ft_push_stack(stack_from, stack_to);
+			reverse_rotate_n_times(stack_to, -rotations, true);
+		push_stack(stack_from, stack_to, true);
 	}
-	ft_rotate_ordered_to_be_sorted(stack_to);
+	rotate_ordered_to_be_sorted(stack_to);
 }

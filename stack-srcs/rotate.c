@@ -6,14 +6,16 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:22:16 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 16:18:12 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 16:40:27 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
+#include "stack.h"
 
-void	_roter(t_stack *stack)
+#include <stdbool.h>
+
+void	rotate_stack(t_stack *stack, _Bool print_operation)
 {
 	int		i;
 	int		tmp;
@@ -26,31 +28,26 @@ void	_roter(t_stack *stack)
 		i--;
 	}
 	stack->arr[i] = tmp;
+	if (print_operation)
+		ft_printf("r%c\n", stack->identifier);
 }
 
-void	ft_rotate_stack(t_stack *stack)
+void	rotate_both_stack(t_stack *stack_a, t_stack *stack_b, _Bool print_operation)
 {
-	_roter(stack);
-	ft_putchar_fd('r', 1);
-	ft_putchar_fd(stack->identifier, 1);
-	ft_putchar_fd('\n', 1);
+	rotate_stack(stack_a, false);
+	rotate_stack(stack_b, false);
+	if (print_operation)
+		ft_printf("rr\n");
 }
 
-void	ft_rotate_both_stack(t_stack *stack_a, t_stack *stack_b)
-{
-	_roter(stack_a);
-	_roter(stack_b);
-	ft_putstr_fd("rr\n", 1);
-}
-
-void	ft_rotate_n_times(t_stack *stack, int n)
+void	rotate_n_times(t_stack *stack, int n, _Bool print_operation)
 {
 	int		i;
 
 	i = 0;
 	while (i < n)
 	{
-		ft_rotate_stack(stack);
+		rotate_stack(stack, print_operation);
 		i++;
 	}
 }

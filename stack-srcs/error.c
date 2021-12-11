@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 16:18:03 by fvarrin          ###   ########.fr       */
+/*   Created: 2021/11/24 13:06:28 by fvarrin           #+#    #+#             */
+/*   Updated: 2021/12/11 16:28:49 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
+#include "stack.h"
 
-#include <stdio.h>
 #include <stdlib.h>
 
-void	ft_push_stack(t_stack *stack_from, t_stack *stack_to)
+void	error(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_from->top == -1)
-		return ;
-	stack_to->arr[++stack_to->top] = stack_from->arr[stack_from->top--];
-	ft_putchar_fd('p', 1);
-	ft_putchar_fd(stack_to->identifier, 1);
-	ft_putchar_fd('\n', 1);
+	if (stack_a)
+		ft_destroy_stack(stack_a);
+	if (stack_b)
+		ft_destroy_stack(stack_b);
+	ft_putstr_fd("Error\n", 2);
+	exit(-1);
 }

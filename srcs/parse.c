@@ -6,17 +6,19 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:14:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/09 15:55:30 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 16:27:59 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+#include "stack.h"
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-_Bool	ft_check_args(char **args, int *size)
+_Bool	check_args(char **args, int *size)
 {
 	int		i;
 	int		j;
@@ -37,7 +39,7 @@ _Bool	ft_check_args(char **args, int *size)
 	return (true);
 }
 
-char	**ft_parse_single_arg(char *str, char **args, int *size)
+char	**parse_single_arg(char *str, char **args, int *size)
 {
 	int		i;
 
@@ -49,15 +51,15 @@ char	**ft_parse_single_arg(char *str, char **args, int *size)
 		i++;
 	}
 	args = ft_split(str, ' ');
-	if (!ft_check_args(args, size))
+	if (!check_args(args, size))
 	{
 		free(args);
-		ft_error(NULL, NULL);
+		error(NULL, NULL);
 	}
 	return (args);
 }
 
-char	**ft_parse_multiple_arg(char **argv, int argc, char **args, int *size)
+char	**parse_multiple_arg(char **argv, int argc, char **args, int *size)
 {
 	int		i;
 
@@ -68,28 +70,28 @@ char	**ft_parse_multiple_arg(char **argv, int argc, char **args, int *size)
 		args[i] = argv[i];
 		i++;
 	}
-	if (!ft_check_args(args, size))
+	if (!check_args(args, size))
 	{
 		free(args);
-		ft_error(NULL, NULL);
+		error(NULL, NULL);
 	}
 	return (args);
 }
 
-void	ft_parse_arg(t_stack **stack_a, t_stack **stack_b,
+void	parse_arg(t_stack **stack_a, t_stack **stack_b,
 			int argc, char **argv)
 {
 	char	**args;
 	int		size;
 
 	if (argc == 1)
-		ft_error(NULL, NULL);
+		error(NULL, NULL);
 	args = NULL;
 	if (argc == 2)
-		args = ft_parse_single_arg(argv[1], args, &size);
+		args = parse_single_arg(argv[1], args, &size);
 	else
-		args = ft_parse_multiple_arg(&argv[1], argc, args, &size);
-	*stack_a = ft_init_stack(size, args, 'a');
-	*stack_b = ft_create_stack(size, 'b');
+		args = parse_multiple_arg(&argv[1], argc, args, &size);
+	*stack_a = init_stack(size, args, 'a');
+	*stack_b = create_stack(size, 'b');
 	free(args);
 }
