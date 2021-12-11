@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/09 16:46:28 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/11 15:41:43 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
 SRC			= $(addprefix ${SRC_DIR}, main.c error.c parse.c stack/init.c stack/push.c \
 			  stack/swap.c stack/rotate.c stack/reverse-rotate.c debug.c \
-			  stack/insert.c swap-in-stack.c sort-utils.c small-sort.c quick-sort-2.c utils.c)
+			  insert.c swap-in-stack.c sort-utils.c small-sort.c quick-sort-2.c utils.c)
 OBJ			= $(SRC:.c=.o)
 NAME 			= push_swap
 NORM_BIN		= norminette
