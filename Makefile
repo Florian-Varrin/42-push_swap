@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/11 17:02:52 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/11 17:04:23 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBS
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 
-.PHONY: 	all clean fclean re
+.PHONY:			all clean fclean re
 
 all:			${PUSH_SWAP_NAME} ${CHECKER_NAME}
 
