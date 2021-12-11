@@ -6,12 +6,13 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:42:12 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/11 16:52:00 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+#include "stack.h"
 
 #include <stdio.h>
 #include <stdbool.h>
