@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/11 17:04:23 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/15 13:20:41 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
 
 # SRCS
-PUSH_SWAP_SRC		= $(addprefix ${PUSH_SWAP_SRC_DIR}, main.c parse.c insert.c swap-in-stack.c \
-			  sort-utils.c small-sort.c quick-sort-2.c)
+PUSH_SWAP_SRC		= $(addprefix ${PUSH_SWAP_SRC_DIR}, main.c insert.c swap-in-stack.c \
+			  sort-utils.c small-sort.c quick-sort.c)
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
-			  reverse-rotate.c debug.c utils.c sorting-utils.c)
-CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c)
+			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c)
+CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c)
 
 # OBJS
 PUSH_SWAP_OBJ		= $(PUSH_SWAP_SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:34:50 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 13:21:38 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 #include "stack.h"
 
-// General
-void		parse_arg(t_stack **stack_a, t_stack **stack_b, int argc, char **argv);
 // Sorting
 void		sort_two(t_stack *stack);
 void		sort_three(t_stack *stack);
 void		sort_until_five(t_stack *stack_a, t_stack *stack_b);
 void		sort_until_hundred(t_stack *stack_a, t_stack *stack_b);
+
 // Insert
 void		instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to);
+
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);
 _Bool		stack_is_ordered(t_stack *stack);
