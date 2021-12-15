@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:41:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 13:58:11 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:19:28 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-
 
 void	delete_instruction(void	*instruction)
 {
@@ -38,11 +37,11 @@ t_list_el	*add_instruction(t_list_el *instructions_list, char *instruction)
 	return (instructions_list);
 }
 
-t_list_el	*parse_instructions()
+t_list_el	*parse_instructions(void)
 {
 	char		*str;
 	t_list_el	*instructions_list;
-	
+
 	instructions_list = NULL;
 	str = ft_get_next_line(0);
 	while (str)
@@ -55,7 +54,11 @@ t_list_el	*parse_instructions()
 	return (instructions_list);
 }
 
-_Bool	execute_single_instruction(char *instruction, t_stack *stack_a, t_stack *stack_b)
+_Bool	execute_single_instruction(
+			char *instruction,
+			t_stack *stack_a,
+			t_stack *stack_b
+		)
 {
 	if (ft_strcmp(instruction, "sa") == 0)
 		swap_stack(stack_a, false);
@@ -84,21 +87,23 @@ _Bool	execute_single_instruction(char *instruction, t_stack *stack_a, t_stack *s
 	return (true);
 }
 
-_Bool	execute_instructions(t_list_el *instructions_list, t_stack *stack_a, t_stack *stack_b)
+_Bool	execute_instructions(
+			t_list_el *instructions_list,
+			t_stack *stack_a,
+			t_stack *stack_b
+		)
 {
 	t_list_el	*current_el;
-	_Bool		instructions_correct;
 
 	if (!instructions_list)
 		return (false);
 	current_el = instructions_list;
 	while (current_el)
 	{
-		instructions_correct = execute_single_instruction(current_el->content, stack_a, stack_b);
-		if (!instructions_correct)
+		if (!execute_single_instruction(current_el->content, stack_a, stack_b))
 		{
 			ft_lstclear(&instructions_list, &delete_instruction);
-			error(stack_a, stack_b);
+			exit_error(stack_a, stack_b);
 		}
 		current_el = current_el->next;
 	}

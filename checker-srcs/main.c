@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:00:12 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 14:50:20 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:18:02 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ int	main(int argc, char **argv)
 	t_list_el	*instructions_list;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
-	
-	if (argc <= 1)
-		return (-1);
+
+	if (argc == 1)
+		exit_error(NULL, NULL);
 	instructions_list = parse_instructions();
 	if (!instructions_list)
-		error(NULL, NULL);
-	parse_arg(&stack_a, &stack_b, argc, argv);
+		exit_error(NULL, NULL);
+	if (ft_strcmp(argv[1], "-v") == 0 || ft_strcmp(argv[1], "--visualise") == 0)
+	{
+		parse_arg(&stack_a, &stack_b, argc - 2, &argv[2]);
+	}
+	else
+		parse_arg(&stack_a, &stack_b, argc - 1, &argv[1]);
 	if (execute_instructions(instructions_list, stack_a, stack_b))
 		ft_printf("OK\n");
 	else

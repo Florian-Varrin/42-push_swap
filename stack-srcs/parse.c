@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:14:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:27:59 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:22:32 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,23 @@ char	**parse_single_arg(char *str, char **args, int *size)
 	if (!check_args(args, size))
 	{
 		free(args);
-		error(NULL, NULL);
+		exit_error(NULL, NULL);
 	}
 	return (args);
 }
 
-char	**parse_multiple_arg(char **argv, int argc, char **args, int *size)
+char	**parse_multiple_arg(
+			char **argv,
+			int args_number,
+			char **args,
+			int *size
+		)
 {
 	int		i;
 
-	args = (char **)ft_calloc(sizeof(char *), argc);
+	args = (char **)ft_calloc(sizeof(char *), args_number + 1);
 	i = 0;
-	while (i < argc)
+	while (i < args_number + 1)
 	{
 		args[i] = argv[i];
 		i++;
@@ -73,24 +78,27 @@ char	**parse_multiple_arg(char **argv, int argc, char **args, int *size)
 	if (!check_args(args, size))
 	{
 		free(args);
-		error(NULL, NULL);
+		exit_error(NULL, NULL);
 	}
 	return (args);
 }
 
-void	parse_arg(t_stack **stack_a, t_stack **stack_b,
-			int argc, char **argv)
+void	parse_arg(
+			t_stack **stack_a,
+			t_stack **stack_b,
+			int args_number,
+			char **first_arg
+		)
 {
 	char	**args;
 	int		size;
 
-	if (argc == 1)
-		error(NULL, NULL);
+	size = 0;
 	args = NULL;
-	if (argc == 2)
-		args = parse_single_arg(argv[1], args, &size);
+	if (args_number == 1)
+		args = parse_single_arg(first_arg[0], args, &size);
 	else
-		args = parse_multiple_arg(&argv[1], argc, args, &size);
+		args = parse_multiple_arg(&first_arg[0], args_number, args, &size);
 	*stack_a = init_stack(size, args, 'a');
 	*stack_b = create_stack(size, 'b');
 	free(args);

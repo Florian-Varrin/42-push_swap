@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:56:10 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:38:35 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:22:10 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	reverse_rotate_stack(t_stack *stack, _Bool print_operation)
 		ft_printf("rr%c\n", stack->identifier);
 }
 
-void	reverse_rotate_both_stack(t_stack *stack_a, t_stack *stack_b, _Bool print_operation)
+void	reverse_rotate_both_stack(
+			t_stack *stack_a,
+			t_stack *stack_b,
+			_Bool print_operation
+		)
 {
 	reverse_rotate_stack(stack_a, false);
 	reverse_rotate_stack(stack_b, false);

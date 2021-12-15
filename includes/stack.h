@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 13:21:31 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:06:24 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_stack {
 void		parse_arg(t_stack **stack_a, t_stack **stack_b, int argc, char **argv);
 
 // Error
-void		error(t_stack *stack_a, t_stack *stack_b);
+void		exit_error(t_stack *stack_a, t_stack *stack_b);
 
 // Init
 t_stack		*create_stack(int size, char identifier);
