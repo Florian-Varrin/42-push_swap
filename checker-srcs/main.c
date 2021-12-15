@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:00:12 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 13:52:43 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:49:40 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	/* destroy_stack(stack_a); */
-	/* destroy_stack(stack_b); */
-	/* ft_lstclear(&instructions_list, &delete_instruction); */
+	destroy_stack(stack_a);
+	destroy_stack(stack_b);
+	ft_lstclear(&instructions_list, &delete_instruction);
 }
