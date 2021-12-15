@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:14:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 15:22:32 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:27:35 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ _Bool	check_args(char **args, int *size)
 		while (args[i][j])
 		{
 			if (!ft_isdigit(args[i][j]))
-				return (false);
+			{
+				if (!(args[i][j] == '-' && ft_strcmp(args[i], "-")))
+					return (false);
+			}
 			j++;
 		}
 		i++;
