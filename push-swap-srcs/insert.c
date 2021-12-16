@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:52:00 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/16 09:42:48 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,33 @@ int	get_last_index(t_stack *stack, int rotation)
 	return (stack->top - rotation + 1);
 }
 
+static int	_get_rotation_special_case(t_stack *stack, int number_to_insert)
+{
+	int		i;
+	int		rotations;
+	int		reverse_rotations;
+
+	if (number_to_insert > stack_max_value(stack))
+	{
+		i = stack_max_index(stack);
+		reverse_rotations = i;
+		rotations = stack->top - i - 1;
+	}
+	else if (number_to_insert < stack_min_value(stack))
+	{
+		i = stack_min_index(stack);
+		reverse_rotations = i + 1;
+		rotations = stack->top - i;
+	}
+	else
+		return (0);
+	if (rotations <= reverse_rotations)
+		return (rotations);
+	else
+		return (-reverse_rotations);
+}
+
+
 int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 {
 	int		i;
@@ -31,9 +58,9 @@ int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 	int		reverse_rotations;
 
 	if (number_to_insert > stack_max_value(stack))
-		i = stack_max_index(stack);
+		return (_get_rotation_special_case(stack, number_to_insert));
 	else if (number_to_insert < stack_min_value(stack))
-		i = stack_min_index(stack);
+		return (_get_rotation_special_case(stack, number_to_insert));
 	else if (stack->arr[stack->top] > number_to_insert
 		&& stack->arr[0] < number_to_insert)
 		return (0);
@@ -43,9 +70,9 @@ int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		while (!(stack->arr[i] > number_to_insert
 				&& stack->arr[i + 1] < number_to_insert))
 			i++;
+		reverse_rotations = i + 1;
+		rotations = stack->top - i;
 	}
-	reverse_rotations = i + 1;
-	rotations = stack->top - i;
 	if (rotations <= reverse_rotations)
 		return (rotations);
 	else
