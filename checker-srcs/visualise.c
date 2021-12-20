@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:52:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 18:19:23 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/18 17:13:08 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-
-int	handle_key(int keycode, t_state *state)
-{
-	if (keycode == 113)
-		exit(0);
-	else if (keycode == 110 && state->next_instruction)
-	{
-		execute_single_instruction(state->next_instruction->content, state->stack_a, state->stack_b);
-		render_image(state);
-		state->next_instruction = state->next_instruction->next;
-	}
-	return (0);
-}
+#include <signal.h>
+#include <pthread.h>
 
 int		get_number_width(int number, int max)
 {
@@ -54,7 +43,7 @@ void	render_single_stack(t_stack *stack, t_image *image, int max)
 	else
 		left_shift = 300;
 	while (i >= 0) {
-		draw_square(image, n * number_height, left_shift, left_shift + get_number_width(stack->arr[i], max), number_height);
+		draw_square(image, n * number_height, left_shift, left_shift + get_number_width(stack->arr[i], max), number_height, COLOR);
 		i--;
 		n++;
 	}
@@ -78,32 +67,47 @@ void	render_stacks(t_stack *stack_a, t_stack *stack_b, t_image *image)
 
 void	render_image(t_state *state)
 {
-	int			i;
-	t_list_el	*instruction;
+	/* int			i; */
+	/* t_list_el	*instruction; */
 	t_window	*window;
 	t_image		image;
 
+	ft_printf("state->window %p\n", state->window);
 	window = state->window;
 	init_image(window, &image);
 	render_stacks(state->stack_a, state->stack_b, &image);
 	mlx_put_image_to_window(window->mlx, window->win, image.img, 0, 0);
-	instruction = state->instructions_list;
-	i = 1;
-	while (instruction) {
-		mlx_string_put(window->mlx, window->win, i * 25, 800, 0xFFFFFF, instruction->content);
-		instruction = instruction->next;
-		i++;
-	}
-
+	/* instruction = state->instructions_list; */
+	/* i = 1; */
+	/* while (instruction) { */
+	/* 	mlx_string_put(window->mlx, window->win, i * 25, 800, 0xFFFFFF, instruction->content); */
+	/* 	instruction = instruction->next; */
+	/* 	i++; */
+	/* } */
 }
 
-void	visualise_instructions(t_list_el *instructions_list, t_stack *stack_a, t_stack *stack_b)
+
+void	*wait_for_play(void *state_input)
+{
+	t_state		*state;
+
+	state = state_input;
+	while (!state->is_playing)
+		usleep(state->speed);
+	execute_instructions(state);
+	if (!state->has_finished)
+		wait_for_play((void *)state);
+	return (NULL);
+}
+
+void	visualise_instructions(t_state *state)
 {
 	t_window	window;
-	t_state		state;
 
-	init_state(&state, instructions_list, stack_a, stack_b);
-	init_window(&window, &state);
-	render_image(&state);
+	ft_printf("pid : %d\n", getpid());
+	init_window(&window, state);
+	render_image(state);
+	/* pthread_create(state->play_thread, NULL, wait_for_play, (void *)state); */
+	/* pthread_join(*(state->play_thread), NULL); */
 	mlx_loop(window.mlx);
 }

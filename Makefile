@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/15 17:06:32 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/16 10:47:24 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ PUSH_SWAP_SRC		= $(addprefix ${PUSH_SWAP_SRC_DIR}, main.c insert.c swap-in-stack
 			  sort-utils.c small-sort.c quick-sort.c)
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
 			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c)
-CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c visualise.c draw.c init.c)
+CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c visualise.c draw.c init.c input.c)
 
 # OBJS
 PUSH_SWAP_OBJ		= $(PUSH_SWAP_SRC:.c=.o)
@@ -43,6 +43,9 @@ CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBS
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 MLX_FLAGS		= -L${MLX_DIR} -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+PTHREAD_FLAGS		= -lpthread
+CHECKER_FLAGS		= ${LIBFT_FLAGS} ${MLX_FLAGS} ${PTHREAD_FLAGS}
+
 .PHONY:			all clean fclean re
 
 all:			${PUSH_SWAP_NAME} ${CHECKER_NAME}
@@ -54,7 +57,7 @@ ${PUSH_SWAP_NAME}:	${STACK_OBJ} ${PUSH_SWAP_OBJ}
 ${CHECKER_NAME}:	${STACK_OBJ} ${CHECKER_OBJ}
 			@make -C ${LIBFT_DIR} all || true
 			@make -C ${MLX_DIR} all || true
-			${CC} ${CFLAGS} ${CHECKER_OBJ} ${STACK_OBJ} ${LIBFT_FLAGS} ${MLX_FLAGS} -o ${CHECKER_NAME}
+			${CC} ${CFLAGS} ${CHECKER_OBJ} ${STACK_OBJ} ${CHECKER_FLAGS} -o ${CHECKER_NAME}
 
 clean:
 			${RM} ${STACK_OBJ}

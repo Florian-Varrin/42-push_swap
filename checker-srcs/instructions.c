@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:41:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 18:12:51 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/18 16:48:03 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	delete_instruction(void	*instruction)
 {
@@ -60,6 +61,7 @@ _Bool	execute_single_instruction(
 			t_stack *stack_b
 		)
 {
+	ft_printf("executing %s\n", instruction);
 	if (ft_strcmp(instruction, "sa") == 0)
 		swap_stack(stack_a, false);
 	else if (ft_strcmp(instruction, "sb") == 0)
@@ -87,27 +89,37 @@ _Bool	execute_single_instruction(
 	return (true);
 }
 
-_Bool	execute_instructions(
-			t_list_el *instructions_list,
-			t_stack *stack_a,
-			t_stack *stack_b
-		)
+_Bool	execute_instructions(t_state *state)
 {
 	t_list_el	*current_el;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 
-	if (!instructions_list)
+	stack_a = state->stack_a;
+	stack_b = state->stack_b;
+	if (!state->instructions_list)
 		return (false);
-	current_el = instructions_list;
+	current_el = state->instructions_list;
 	while (current_el)
 	{
+		usleep(state->speed);
+		if (!state->is_playing)
+			return (false);
 		if (!execute_single_instruction(current_el->content, stack_a, stack_b))
 		{
-			ft_lstclear(&instructions_list, &delete_instruction);
+			ft_lstclear(&(state->instructions_list), &delete_instruction);
 			exit_error(stack_a, stack_b);
 		}
 		current_el = current_el->next;
+		ft_printf("Will render");
+		render_image(state);
+		ft_printf("Has render");
 	}
+	state->is_playing= (false);
 	if (stack_is_sorted(stack_a) && stack_b->top == -1)
+	{
+		state->has_finished = true;
 		return (true);
+	}
 	return (false);
 }

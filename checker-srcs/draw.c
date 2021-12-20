@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:56:48 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 17:01:47 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/16 10:02:12 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void	put_pixel_to_image(t_image *image, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_staight_line(t_image *image, int y_pos, int x_start, int x_end)
+void	draw_staight_line(t_image *image, int y_pos, int x_start, int x_end, int color)
 {
 	while (x_start <= x_end ) {
-		put_pixel_to_image(image, x_start++, y_pos, COLOR);
+		put_pixel_to_image(image, x_start++, y_pos, color);
 	}
 }
 
-void	draw_square(t_image *image, int y_pos, int x_start, int x_end, int height)
+void	draw_square(t_image *image, int y_pos, int x_start, int x_end, int height, int color)
 {
 	int		i;
 
 	i = 0;
 	while (i < height)
 	{
-		draw_staight_line(image, y_pos + i, x_start, x_end);;
+		draw_staight_line(image, y_pos + i, x_start, x_end, color);;
 		i++;
 	}
 }
