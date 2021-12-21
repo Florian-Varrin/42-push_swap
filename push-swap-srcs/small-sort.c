@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:20:33 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/16 09:34:31 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:49:46 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-void	sort_two(t_stack *stack)
+void	sort_two(t_stack *stack, t_list_el **lst)
 {
 	if (stack->arr[0] > stack->arr[1])
 		return ;
 	else
-		swap_stack(stack, true);
+		swap_stack(stack, lst);
 }
 
-void	sort_three(t_stack *stack)
+void	sort_three(t_stack *stack, t_list_el **lst)
 {
 	int		max_index;
 
@@ -34,17 +34,17 @@ void	sort_three(t_stack *stack)
 		return ;
 	if (max_index == 2)
 	{
-		rotate_stack(stack, true);
-		sort_three(stack);
+		rotate_stack(stack, lst);
+		sort_three(stack, lst);
 	}
 	else
 	{
-		swap_stack(stack, true);
-		sort_three(stack);
+		swap_stack(stack, lst);
+		sort_three(stack, lst);
 	}
 }
 
-void	sort_until_five(t_stack *stack_a, t_stack *stack_b)
+void	sort_until_five(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
 	_Bool	need_to_sort_three;
 	int		i;
@@ -60,9 +60,9 @@ void	sort_until_five(t_stack *stack_a, t_stack *stack_b)
 			need_to_sort_three = false;
 			break ;
 		}
-		push_stack(stack_a, stack_b, true);
+		push_stack(stack_a, stack_b, lst);
 	}
 	if (need_to_sort_three)
-		sort_three(stack_a);
-	instert_in_ordered_stack(stack_b, stack_a);
+		sort_three(stack_a, lst);
+	instert_in_ordered_stack(stack_b, stack_a, lst);
 }

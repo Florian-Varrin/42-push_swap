@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 15:17:20 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:46:12 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ static void	_init_vars(
 	*rotations = 0;
 }
 
-static void	_rotate_stack_and_inc(t_stack *stack, int *rotations)
+static void	_rotate_stack_and_inc(t_stack *stack, int *rotations, t_list_el **lst)
 {
-	rotate_stack(stack, true);
-	(*rotations)++;
+	if (stack->top > 0)
+	{
+		rotate_stack(stack, lst);
+		(*rotations)++;
+	}
 }
 
-void	separate_chunks(t_stack *stack_from, t_stack *stack_to)
+void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 {
 	int		operations;
 	int		rotations;
@@ -54,29 +57,31 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to)
 	int		max_pivot;
 
 	if (stack_from->top <= 4)
-		return (sort_until_five(stack_from, stack_to));
+		return (sort_until_five(stack_from, stack_to, lst));
 	_init_vars(stack_from, &stack_size, &operations, &rotations);
 	select_pivot(stack_from, &max_pivot, &min_pivot);
 	while (operations < stack_size)
 	{
 		if (stack_from->arr[stack_from->top] > max_pivot)
-			rotate_stack(stack_from, true);
+			rotate_stack(stack_from, lst);
 		else
 		{
-			push_stack(stack_from, stack_to, true);
+			push_stack(stack_from, stack_to, lst);
 			if (stack_to->arr[stack_to->top] > min_pivot)
-				_rotate_stack_and_inc(stack_to, &rotations);
+				_rotate_stack_and_inc(stack_to, &rotations, lst);
+			else if (stack_to->top > 0 && stack_to->arr[stack_to->top] < stack_to->arr[stack_to->top - 1])
+				swap_stack(stack_to, lst);
 		}
 		operations++;
 	}
-	reverse_rotate_n_times(stack_to, rotations, true);
-	separate_chunks(stack_from, stack_to);
+	reverse_rotate_n_times(stack_to, rotations, lst);
+	separate_chunks(stack_from, stack_to, lst);
 }
 
-void	sort_until_hundred(t_stack *stack_a, t_stack *stack_b)
+void	sort_until_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
 	if (stack_is_sorted(stack_a))
 		return ;
-	separate_chunks(stack_a, stack_b);
-	instert_in_ordered_stack(stack_b, stack_a);
+	separate_chunks(stack_a, stack_b, lst);
+	instert_in_ordered_stack(stack_b, stack_a, lst);
 }

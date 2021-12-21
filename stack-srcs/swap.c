@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:54:42 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 15:21:27 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:36:37 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,36 @@
 
 #include <stdbool.h>
 
-void	swap_stack(t_stack *stack, _Bool print_operation)
+void	swap_stack(t_stack *stack, t_list_el **lst)
 {
-	int		tmp;
-	int		top;
+	int			tmp;
+	int			top;
+	t_list_el	*el;
 
 	top = stack->top;
 	tmp = stack->arr[top];
 	stack->arr[top] = stack->arr[top - 1];
 	stack->arr[top - 1] = tmp;
-	if (print_operation)
-		ft_printf("s%c\n", stack->identifier);
+	if (lst)
+	{
+		el = ft_lstnew(create_instruction_el("s", stack->identifier));
+		ft_lstadd_back(lst, el);
+	}
 }
 
 void	swap_both_stack(
 			t_stack *stack_a,
 			t_stack *stack_b,
-			_Bool print_operation
+			t_list_el **lst
 		)
 {
-	swap_stack(stack_a, false);
-	swap_stack(stack_b, false);
-	if (print_operation)
-		ft_printf("ss\n");
+	t_list_el	*el;
+
+	swap_stack(stack_a, NULL);
+	swap_stack(stack_b, NULL);
+	if (lst)
+	{
+		el = ft_lstnew(create_instruction_el("s", 's'));
+		ft_lstadd_back(lst, el);
+	}
 }

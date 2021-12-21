@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/16 10:47:24 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/21 13:48:43 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ LIBFT_DIR		= ${ROOT_DIR}/libft/
 MLX_DIR			= ${ROOT_DIR}/minilibx/
 
 # SRCS
-PUSH_SWAP_SRC		= $(addprefix ${PUSH_SWAP_SRC_DIR}, main.c insert.c swap-in-stack.c \
+PUSH_SWAP_SRC		= $(addprefix ${PUSH_SWAP_SRC_DIR}, main.c insert.c \
 			  sort-utils.c small-sort.c quick-sort.c)
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
-			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c)
+			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c \
+		 	  instructions.c)
 CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c visualise.c draw.c init.c input.c)
 
 # OBJS

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:56:10 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 15:22:10 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:32:19 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 #include <stdbool.h>
 
-void	reverse_rotate_stack(t_stack *stack, _Bool print_operation)
+void	reverse_rotate_stack(t_stack *stack, t_list_el **lst)
 {
-	int		i;
-	int		tmp;
+	int			i;
+	int			tmp;
+	t_list_el	*el;
 
 	i = 0;
 	tmp = stack->arr[i];
@@ -28,30 +29,38 @@ void	reverse_rotate_stack(t_stack *stack, _Bool print_operation)
 		i++;
 	}
 	stack->arr[i] = tmp;
-	if (print_operation)
-		ft_printf("rr%c\n", stack->identifier);
+	if (lst)
+	{
+		el = ft_lstnew(create_instruction_el("rr", stack->identifier));
+		ft_lstadd_back(lst, el);
+	}
 }
 
 void	reverse_rotate_both_stack(
 			t_stack *stack_a,
 			t_stack *stack_b,
-			_Bool print_operation
+			t_list_el **lst
 		)
 {
-	reverse_rotate_stack(stack_a, false);
-	reverse_rotate_stack(stack_b, false);
-	if (print_operation)
-		ft_printf("rrr\n");
+	t_list_el	*el;
+
+	reverse_rotate_stack(stack_a, NULL);
+	reverse_rotate_stack(stack_b, NULL);
+	if (lst)
+	{
+		el = ft_lstnew(create_instruction_el("rr", 'r'));
+		ft_lstadd_back(lst, el);
+	}
 }
 
-void	reverse_rotate_n_times(t_stack *stack, int n, _Bool print_operation)
+void	reverse_rotate_n_times(t_stack *stack, int n, t_list_el **lst)
 {
 	int		i;
 
 	i = 0;
 	while (i < n)
 	{
-		reverse_rotate_stack(stack, print_operation);
+		reverse_rotate_stack(stack, lst);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/16 09:42:48 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:50:12 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,28 @@ int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		return (-reverse_rotations);
 }
 
-void	instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to)
+void	instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 {
 	int		number_to_insert;
 	int		rotations;
 
 	while (stack_from->top != -1)
 	{
+		if (stack_from->arr[stack_from->top] > stack_from->arr[stack_from->top - 1] && stack_min_index(stack_from) == stack_from->top)
+		{
+			swap_stack(stack_from, lst);
+			continue ;
+		}
 		number_to_insert = stack_from->arr[stack_from->top];
 		rotations = get_rotation_number_to_insert(
 				stack_to,
 				number_to_insert
 				);
 		if (rotations >= 0)
-			rotate_n_times(stack_to, rotations, true);
+			rotate_n_times(stack_to, rotations, lst);
 		else
-			reverse_rotate_n_times(stack_to, -rotations, true);
-		push_stack(stack_from, stack_to, true);
+			reverse_rotate_n_times(stack_to, -rotations, lst);
+		push_stack(stack_from, stack_to, lst);
 	}
-	rotate_ordered_to_be_sorted(stack_to);
+	rotate_ordered_to_be_sorted(stack_to, lst);
 }

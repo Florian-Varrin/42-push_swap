@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 13:21:38 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:49:34 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 # define PUSH_SWAP_H
 
 #include "stack.h"
+#include "libft.h"
 
 // Sorting
-void		sort_two(t_stack *stack);
-void		sort_three(t_stack *stack);
-void		sort_until_five(t_stack *stack_a, t_stack *stack_b);
-void		sort_until_hundred(t_stack *stack_a, t_stack *stack_b);
-
-// Insert
-void		instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to);
+void		sort_two(t_stack *stack, t_list_el **lst);
+void		sort_three(t_stack *stack, t_list_el **lst);
+void		sort_until_five(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
+void		sort_until_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
 
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);
@@ -32,6 +30,6 @@ int			stack_max_index(t_stack *stack);
 int			stack_max_value(t_stack *stack);
 int			stack_min_index(t_stack *stack);
 int			stack_min_value(t_stack *stack);
-void		rotate_ordered_to_be_sorted(t_stack *stack);
+void		rotate_ordered_to_be_sorted(t_stack *stack, t_list_el **lst);
 int			swap_two_number(t_stack *stack_a, t_stack *stack_b, int bottom_index, int top_index);
 #endif
