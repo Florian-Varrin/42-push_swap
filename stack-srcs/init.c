@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/15 15:09:06 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:14:55 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_stack	*init_stack(int size, char **content, char identifier)
 
 t_stack	*destroy_stack(t_stack *stack)
 {
-	if (stack->arr)
+	if (stack && stack->arr)
 		free(stack->arr);
 	if (stack)
 		free(stack);

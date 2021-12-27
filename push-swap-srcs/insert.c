@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 13:50:12 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:27:32 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to, t_list_el 
 
 	while (stack_from->top != -1)
 	{
-		if (stack_from->arr[stack_from->top] > stack_from->arr[stack_from->top - 1] && stack_min_index(stack_from) == stack_from->top)
+		if (stack_from->top > 0 && stack_from->arr[stack_from->top] > stack_from->arr[stack_from->top - 1] && stack_min_index(stack_from) == stack_from->top)
 		{
 			swap_stack(stack_from, lst);
 			continue ;
