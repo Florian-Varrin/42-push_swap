@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 13:46:12 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/28 14:26:53 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 	int		min_pivot;
 	int		max_pivot;
 
-	if (stack_from->top <= 4)
-		return (sort_until_five(stack_from, stack_to, lst));
+	if (stack_from->top <= 2)
+		return (sort_three(stack_from, lst));
 	_init_vars(stack_from, &stack_size, &operations, &rotations);
 	select_pivot(stack_from, &max_pivot, &min_pivot);
 	while (operations < stack_size)
@@ -69,8 +69,8 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 			push_stack(stack_from, stack_to, lst);
 			if (stack_to->arr[stack_to->top] > min_pivot)
 				_rotate_stack_and_inc(stack_to, &rotations, lst);
-			else if (stack_to->top > 0 && stack_to->arr[stack_to->top] < stack_to->arr[stack_to->top - 1])
-				swap_stack(stack_to, lst);
+			/* else if (stack_to->top > 0 && stack_to->arr[stack_to->top] < stack_to->arr[stack_to->top - 1]) */
+			/* 	swap_stack(stack_to, lst); */
 		}
 		operations++;
 	}

@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/21 13:48:43 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/27 17:55:52 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ CHECKER_NAME		= checker
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -I${MLX_DIR}
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -I${MLX_DIR} -g
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 MLX_FLAGS		= -L${MLX_DIR} -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd

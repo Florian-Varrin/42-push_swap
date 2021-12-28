@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/27 17:24:36 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/28 14:27:22 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+
+void	destroy_all_and_exit(t_stack *stack_a, t_stack *stack_b, t_list_el *instructions_list)
+{
+	ft_lstclear(&instructions_list, destroy_instruction_el);
+	destroy_stack(stack_a);
+	destroy_stack(stack_b);
+}
 
 int	main(int argc, char **argv)
 {
@@ -37,9 +44,7 @@ int	main(int argc, char **argv)
 		sort_until_hundred(stack_a, stack_b, &instructions_list);
 	/* optimise_instructions(&instructions_list); */
 	ft_lstiter(instructions_list, print_instructions);
-	ft_lstclear(&instructions_list, destroy_instruction_el);
-	/* print_stack(stack_a, "Test"); */
-	destroy_stack(stack_a);
-	destroy_stack(stack_b);
+	/* print_stack(stack_a, "End"); */
+	destroy_all_and_exit(stack_a, stack_b, instructions_list);
 	return (0);
 }
