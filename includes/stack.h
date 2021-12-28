@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 14:11:24 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/28 14:51:01 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			stack_min_value(t_stack *stack);
 t_instruction_el	*create_instruction_el(char instruction[3], char stack_identifier);
 void				print_instructions(void *instruction_input);
 void				destroy_instruction_el(void *instruction_input);
-void				optimise_instructions(t_list_el **lst);
+int					optimise_instructions(t_list_el **lst);
 // Debug
 void		print_stack(t_stack *stack, char *message);
 #endif
