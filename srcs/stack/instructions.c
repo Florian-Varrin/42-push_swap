@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:14:11 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/28 14:50:34 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/29 16:01:35 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_instructions(void *instruction_input)
 	ft_printf("%s%c\n", instruction_el->instruction, instruction_el->stack_identifier);
 }
 
-int	optimise_single_instruction(t_list_el *instruction_el, char *instruction, char both_instructions)
+int	optimise_instruction_for_double(t_list_el *instruction_el, char *instruction, char both_instructions)
 {
 	char				lookup_identifier;
 	t_instruction_el	*instruction_el_content;
@@ -95,11 +95,11 @@ int	optimise_instructions(t_list_el **lst)
 	{
 		current_instruction_el = current_el->content;
 		if (ft_strcmp(current_instruction_el->instruction, "r") == 0)
-			optimisations += optimise_single_instruction(current_el, "r", 'r');
+			optimisations += optimise_instruction_for_double(current_el, "r", 'r');
 		else if (ft_strcmp(current_instruction_el->instruction, "rr") == 0)
-			optimisations += optimise_single_instruction(current_el, "rr", 'r');
+			optimisations += optimise_instruction_for_double(current_el, "rr", 'r');
 		else if (ft_strcmp(current_instruction_el->instruction, "s") == 0)
-			optimisations += optimise_single_instruction(current_el, "s", 's');
+			optimisations += optimise_instruction_for_double(current_el, "s", 's');
 		current_el = current_el->next;
 	}
 	return (optimisations);

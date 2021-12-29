@@ -6,15 +6,16 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2021/12/27 17:55:52 by fvarrin          ###   ########.fr        #
+#    Updated: 2021/12/29 16:13:25 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # DIRS
 ROOT_DIR		?= $(shell pwd)
-PUSH_SWAP_SRC_DIR	= ${ROOT_DIR}/push-swap-srcs/
-STACK_SRC_DIR		= ${ROOT_DIR}/stack-srcs/
-CHECKER_SRC_DIR		= ${ROOT_DIR}/checker-srcs/
+SRCS_DIR		= ${ROOT_DIR}/srcs/
+PUSH_SWAP_SRC_DIR	= ${SRCS_DIR}push-swap/
+STACK_SRC_DIR		= ${SRCS_DIR}stack/
+CHECKER_SRC_DIR		= ${SRCS_DIR}checker/
 HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
 MLX_DIR			= ${ROOT_DIR}/minilibx/
@@ -56,7 +57,7 @@ ${PUSH_SWAP_NAME}:	${STACK_OBJ} ${PUSH_SWAP_OBJ}
 			${CC} ${CFLAGS} ${PUSH_SWAP_OBJ} ${STACK_OBJ} ${LIBFT_FLAGS} -o ${PUSH_SWAP_NAME}
 
 ${CHECKER_NAME}:	${STACK_OBJ} ${CHECKER_OBJ}
-			@make -C ${LIBFT_DIR} all || true
+			@make -C --silent ${LIBFT_DIR} all || true
 			@make -C ${MLX_DIR} all || true
 			${CC} ${CFLAGS} ${CHECKER_OBJ} ${STACK_OBJ} ${CHECKER_FLAGS} -o ${CHECKER_NAME}
 
