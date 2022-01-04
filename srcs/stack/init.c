@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 15:35:28 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 15:48:04 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_stack	*fill_stack(t_stack *stack, int n)
 		return (stack);
 	stack->top++;
 	stack->arr[stack->top] = n;
-	sort_stack_arr(stack);
 	return (stack);
 }
 
@@ -96,6 +95,7 @@ t_stack	*init_stack(int size, char **content, char identifier)
 		n = ft_atoi(content[i--]);
 		fill_stack(stack, n);
 	}
+	sort_stack_arr(stack);
 	return (stack);
 }
 
