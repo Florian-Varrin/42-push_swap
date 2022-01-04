@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/04 14:52:29 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/04 16:01:16 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ ${CHECKER_NAME}:	${STACK_OBJ} ${CHECKER_OBJ}
 
 clean:
 			${RM} ${STACK_OBJ}
-			${RM} ${PUSH_SWAP_OBJ}
+			${RM} ${SORT_OBJ}
 			${RM} ${CHECKER_OBJ}
 
 fclean:			clean
