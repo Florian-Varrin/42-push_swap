@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:54:42 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 13:36:37 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 14:58:12 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	swap_stack(t_stack *stack, t_list_el **lst)
 	int			top;
 	t_list_el	*el;
 
+	if (stack->top <= 0)
+		return ;
 	top = stack->top;
 	tmp = stack->arr[top];
 	stack->arr[top] = stack->arr[top - 1];

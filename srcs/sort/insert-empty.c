@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert2.c                                          :+:      :+:    :+:   */
+/*   insert-empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:38:47 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 14:42:36 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 15:11:08 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ void	instert_in_empty_stack(
 		}
 		push_stack(stack_from, stack_to, lst);
 		if (need_to_swap)
+		{
 			swap_stack(stack_to, lst);
+			if (stack_from->top > 0 && stack_from->arr[stack_from->top] < stack_from->arr[stack_from->top - 1])
+				swap_stack(stack_from, lst);
+		}
 	}
 }

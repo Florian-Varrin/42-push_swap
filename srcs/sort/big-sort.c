@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 14:44:03 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 15:34:20 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,13 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 		}
 		operations++;
 	}
-	reverse_rotate_n_times(stack_to, rotations, lst);
+	while (rotations > 0) 
+	{
+		reverse_rotate_stack(stack_to, lst);
+		if (stack_from->arr[0] > stack_from->arr[stack_from->top])
+			reverse_rotate_stack(stack_from, lst);
+		rotations--;
+	}
 	separate_chunks(stack_from, stack_to, lst);
 }
 

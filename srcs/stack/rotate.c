@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 14:22:16 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 13:32:08 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 14:57:32 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	rotate_stack(t_stack *stack, t_list_el **lst)
 	int			tmp;
 	t_list_el	*el;
 
+	if (stack->top <= 0)
+		return ;
 	i = stack->top;
 	tmp = stack->arr[i];
 	while (i > 0)

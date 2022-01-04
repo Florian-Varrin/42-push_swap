@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/04 14:50:08 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/04 14:52:29 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT_DIR		= ${ROOT_DIR}/libft/
 MLX_DIR			= ${ROOT_DIR}/minilibx/
 
 # SRCS
-SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert.c insert2.c \
+SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert-sorted.c insert-empty.c \
 			  sort-utils.c small-sort.c big-sort.c)
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
 			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c \
@@ -76,4 +76,4 @@ re:			fclean ${PUSH_SWAP_NAME} ${CHECKER_NAME}
 
 norm:			fclean
 			echo "\n\n"
-			${NORM_BIN} ${NORM_FLAGS} ${SRCS_DIR}
+			${NORM_BIN} ${NORM_FLAGS} ${STACK_SRC} ${SORT_SRC} ${CHECKER_SRC}
