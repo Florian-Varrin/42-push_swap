@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/28 14:51:01 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 13:22:39 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct	s_stack {
 	int		size;
 	int		top;
 	int		*arr;
+	int		*sorted_arr;
 }	t_stack;
 
 typedef struct	s_instruction_el
@@ -50,6 +51,7 @@ void		reverse_rotate_stack(t_stack *stack, t_list_el **lst);
 void		reverse_rotate_both_stack(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
 void		reverse_rotate_n_times(t_stack *stack, int n, t_list_el **lst);
 void		instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to, t_list_el **lst);
+void		instert_in_empty_stack(t_stack *stack_from, t_stack *stack_to, t_list_el **lst);
 
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);
@@ -59,6 +61,7 @@ int			stack_max_index(t_stack *stack);
 int			stack_max_value(t_stack *stack);
 int			stack_min_index(t_stack *stack);
 int			stack_min_value(t_stack *stack);
+int			get_number_index(t_stack *stack, int number);
 
 // Instructions
 t_instruction_el	*create_instruction_el(char instruction[3], char stack_identifier);
@@ -67,4 +70,5 @@ void				destroy_instruction_el(void *instruction_input);
 int					optimise_instructions(t_list_el **lst);
 // Debug
 void		print_stack(t_stack *stack, char *message);
+
 #endif

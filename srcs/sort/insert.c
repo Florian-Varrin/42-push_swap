@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/28 14:18:56 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/29 16:36:32 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	_get_rotation_special_case(t_stack *stack, int number_to_insert)
 		return (-reverse_rotations);
 }
 
-
 int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 {
 	int		i;
@@ -79,7 +78,11 @@ int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		return (-reverse_rotations);
 }
 
-void	instert_in_ordered_stack(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
+void	instert_in_ordered_stack(
+			t_stack *stack_from,
+			t_stack *stack_to,
+			t_list_el **lst
+		)
 {
 	int		number_to_insert;
 	int		rotations;

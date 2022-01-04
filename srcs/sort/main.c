@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/28 14:53:21 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 14:45:45 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void	destroy_all_and_exit(t_stack *stack_a, t_stack *stack_b, t_list_el *instructions_list)
+void	destroy_all_and_exit(
+			t_stack *stack_a,
+			t_stack *stack_b,
+			t_list_el *instructions_list
+		)
 {
 	ft_lstclear(&instructions_list, destroy_instruction_el);
 	destroy_stack(stack_a);
@@ -35,18 +39,17 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		exit_error(NULL, NULL);
 	parse_arg(&stack_a, &stack_b, argc - 1, &argv[1]);
-	if (stack_a->size == 2)
+	if (stack_a->size == 3)
 		sort_two(stack_a, &instructions_list);
 	else if (stack_a->size == 3)
 		sort_three(stack_a, &instructions_list);
 	else if (stack_a->size >= 4 && stack_a->size <= 5)
 		sort_until_five(stack_a, stack_b, &instructions_list);
 	else
-		sort_until_hundred(stack_a, stack_b, &instructions_list);
+		sort_until_infinity(stack_a, stack_b, &instructions_list);
 	optimisations = -1;
-	while (optimisations != 0) {
+	while (optimisations != 0)
 		optimisations = optimise_instructions(&instructions_list);
-	}
 	ft_lstiter(instructions_list, print_instructions);
 	destroy_all_and_exit(stack_a, stack_b, instructions_list);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/21 13:49:34 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 14:44:23 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void		sort_two(t_stack *stack, t_list_el **lst);
 void		sort_three(t_stack *stack, t_list_el **lst);
 void		sort_until_five(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
-void		sort_until_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
+void		sort_until_infinity(t_stack *stack_a, t_stack *stack_b, t_list_el **lst);
 
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);

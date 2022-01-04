@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick-sort.c                                       :+:      :+:    :+:   */
+/*   big-sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/28 14:26:53 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 14:44:03 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 	int		min_pivot;
 	int		max_pivot;
 
-	if (stack_from->top <= 2)
-		return (sort_three(stack_from, lst));
+	if (stack_from->top == -1)
+		return ;
 	_init_vars(stack_from, &stack_size, &operations, &rotations);
 	select_pivot(stack_from, &max_pivot, &min_pivot);
 	while (operations < stack_size)
@@ -69,8 +69,6 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 			push_stack(stack_from, stack_to, lst);
 			if (stack_to->arr[stack_to->top] > min_pivot)
 				_rotate_stack_and_inc(stack_to, &rotations, lst);
-			/* else if (stack_to->top > 0 && stack_to->arr[stack_to->top] < stack_to->arr[stack_to->top - 1]) */
-			/* 	swap_stack(stack_to, lst); */
 		}
 		operations++;
 	}
@@ -78,10 +76,10 @@ void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 	separate_chunks(stack_from, stack_to, lst);
 }
 
-void	sort_until_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
+void	sort_until_infinity(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
 	if (stack_is_sorted(stack_a))
 		return ;
 	separate_chunks(stack_a, stack_b, lst);
-	instert_in_ordered_stack(stack_b, stack_a, lst);
+	instert_in_empty_stack(stack_b, stack_a, lst);
 }

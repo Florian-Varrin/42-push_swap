@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:05:05 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/11 16:28:55 by fvarrin          ###   ########.fr       */
+/*   Updated: 2021/12/29 17:04:47 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,18 @@ int	stack_min_value(t_stack *stack)
 
 	min_index = stack_min_index(stack);
 	return (stack->arr[min_index]);
+}
+
+int	get_number_index(t_stack *stack, int number)
+{
+	int		i;
+
+	i = stack->top;
+	while (i >= 0)
+	{
+		if (stack->arr[i] == number)
+			return (i);
+		i--;
+	}
+	return (-1);
 }
