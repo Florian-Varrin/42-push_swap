@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/04 16:01:16 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/04 17:36:23 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MLX_DIR			= ${ROOT_DIR}/minilibx/
 
 # SRCS
 SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert-sorted.c insert-empty.c \
-			  sort-utils.c small-sort.c big-sort.c)
+			  sort-utils.c small-sort.c middle-sort.c big-sort.c)
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
 			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c \
 		 	  instructions.c)

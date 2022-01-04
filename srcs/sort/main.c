@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 15:34:26 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:46:52 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int	main(int argc, char **argv)
 		sort_three(stack_a, &instructions_list);
 	else if (stack_a->size >= 4 && stack_a->size <= 5)
 		sort_until_five(stack_a, stack_b, &instructions_list);
+	else if (stack_a->size > 5 && stack_a->size <= 400)
+		sort_until_four_hundred(stack_a, stack_b, &instructions_list);
 	else
-		sort_until_infinity(stack_a, stack_b, &instructions_list);
+		sort_after_four_hundred(stack_a, stack_b, &instructions_list);
 	optimisations = -1;
 	while (optimisations != 0)
 		optimisations = optimise_instructions(&instructions_list);

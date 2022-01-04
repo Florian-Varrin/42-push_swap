@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 15:34:20 by fvarrin          ###   ########.fr       */
+/*   Created: 2022/01/04 16:02:55 by fvarrin           #+#    #+#             */
+/*   Updated: 2022/01/04 18:08:16 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,76 +16,75 @@
 
 #include <stdbool.h>
 
-void	select_pivot(t_stack *stack, int *max_pivot, int *min_pivot)
+void	get_next_indexes(t_stack *stack_from, int chunk_start, int *top_number_index, int *bottom_number_index)
 {
-	int		min_value;
-	int		max_value;
+	int		i;
+	int		j;
 
-	max_value = stack_max_value(stack);
-	min_value = stack_min_value(stack);
-	*max_pivot = (max_value + min_value) / 2;
-	*min_pivot = (*max_pivot + min_value) / 2;
-}
-
-static void	_init_vars(
-			t_stack *stack_from,
-			int *stack_size,
-			int *operations,
-			int *rotations
-		)
-{
-	*stack_size = stack_from->top + 1;
-	*operations = 0;
-	*rotations = 0;
-}
-
-static void	_rotate_stack_and_inc(t_stack *stack, int *rotations, t_list_el **lst)
-{
-	if (stack->top > 0)
+	i = stack_from->top;
+	j = chunk_start;
+	while (*top_number_index == -1)
 	{
-		rotate_stack(stack, lst);
-		(*rotations)++;
-	}
-}
-
-void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
-{
-	int		operations;
-	int		rotations;
-	int		stack_size;
-	int		min_pivot;
-	int		max_pivot;
-
-	if (stack_from->top == -1)
-		return ;
-	_init_vars(stack_from, &stack_size, &operations, &rotations);
-	select_pivot(stack_from, &max_pivot, &min_pivot);
-	while (operations < stack_size)
-	{
-		if (stack_from->arr[stack_from->top] > max_pivot)
-			rotate_stack(stack_from, lst);
-		else
+		while (j < chunk_start + CHUNK_SIZE)
 		{
-			push_stack(stack_from, stack_to, lst);
-			if (stack_to->arr[stack_to->top] > min_pivot)
-				_rotate_stack_and_inc(stack_to, &rotations, lst);
+			if (stack_from->arr[i] == stack_from->sorted_arr[j])
+			{
+				*top_number_index = i;
+				break ;
+			}
+			j++;
 		}
-		operations++;
+		i--;
+		j = chunk_start;
 	}
-	while (rotations > 0) 
+	i = 0;
+	j = chunk_start;
+	while (*bottom_number_index == -1)
 	{
-		reverse_rotate_stack(stack_to, lst);
-		if (stack_from->arr[0] > stack_from->arr[stack_from->top])
-			reverse_rotate_stack(stack_from, lst);
-		rotations--;
+		while (j < chunk_start + CHUNK_SIZE)
+		{
+			if (stack_from->arr[i] == stack_from->sorted_arr[j])
+			{
+				*bottom_number_index = i;
+				break ;
+			}
+			j++;
+		}
+		i++;
+		j = chunk_start;
 	}
-	separate_chunks(stack_from, stack_to, lst);
 }
 
-void	sort_until_infinity(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
+static void	separate_chunks(t_stack *stack_from, t_stack *stack_to, int chunk_start, t_list_el **lst)
+{
+	int		rotations;
+	int		reverse_rotations;
+	int		pushed;
+
+	if (chunk_start > stack_from->size)
+		return ;
+	pushed = 0;
+	while (pushed < CHUNK_SIZE)
+	{
+		rotations = -1;
+		reverse_rotations = -1;
+		get_next_indexes(stack_from, chunk_start, &rotations, &reverse_rotations);
+		rotations = stack_from->top - rotations;
+		reverse_rotations = reverse_rotations + 1;
+		if (rotations <= reverse_rotations)
+			rotate_n_times(stack_from, rotations, lst);
+		else
+			reverse_rotate_n_times(stack_from, reverse_rotations, lst);
+		push_stack(stack_from, stack_to, lst);
+		pushed++;
+	}
+	separate_chunks(stack_from, stack_to, chunk_start + CHUNK_SIZE , lst);
+}
+
+void	sort_after_four_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
 	if (stack_is_sorted(stack_a))
 		return ;
-	separate_chunks(stack_a, stack_b, lst);
+	separate_chunks(stack_a, stack_b, 0, lst);
 	instert_in_empty_stack(stack_b, stack_a, lst);
 }
