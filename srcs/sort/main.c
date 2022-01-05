@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 17:48:21 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 18:23:17 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	optimisations = -1;
 	while (optimisations != 0)
 		optimisations = optimise_instructions(&instructions_list);
-	/* ft_lstiter(instructions_list, print_instructions); */
+	ft_lstiter(instructions_list, print_instructions);
 	destroy_all_and_exit(stack_a, stack_b, instructions_list);
 	return (0);
 }

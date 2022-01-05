@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:02:55 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 17:47:26 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 18:23:11 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	get_next_indexes(t_stack *stack_from, int chunk_start, int *top_number_inde
 	{
 		while (j < chunk_start + chunk_size)
 		{
-			if (i < 0 || j < 0)
-			{
-				*top_number_index = i;
-				break ;
-			}
 			if (stack_from->arr[i] == stack_from->sorted_arr[j])
 			{
 				*top_number_index = i;
@@ -48,12 +43,6 @@ void	get_next_indexes(t_stack *stack_from, int chunk_start, int *top_number_inde
 	{
 		while (j < chunk_start + chunk_size)
 		{
-			if (i <= 0 || j < 0)
-			{
-				*bottom_number_index = i;
-				break ;
-			}
-			ft_printf("i %d\n", i);
 			if (stack_from->arr[i] == stack_from->sorted_arr[j])
 			{
 				*bottom_number_index = i;
@@ -70,7 +59,7 @@ int	get_chunk_size(t_stack *stack, int chunk_number)
 {
 	if (stack->size % chunk_number == 0)
 		return (stack->size / chunk_number);
-	return (stack->size / chunk_number + 1);
+	return (stack->size / chunk_number);
 }
 
 
@@ -127,28 +116,25 @@ void	sort_after_four_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst
 	int			i;
 	int			best_instructions_count;
 	int			current_instructions_count;
+	int			best_chunk_number;
 
-	i = 0;
-	while (i < CHUNK_NUMBERS)
+	best_instructions_count = -1;
+	best_chunk_number = CHUNK_NUMBERS_START;
+	i = CHUNK_NUMBERS_START;
+	while (i <= CHUNK_NUMBERS_END)
 	{
 		next_lst = NULL;
 		try_chunk_number(stack_a, stack_b, &next_lst, i + 1);
 		optimise_instructions(&next_lst);
 		current_instructions_count = count_instructions(next_lst);
-		/* ft_printf("current_instructions_count %d\n", current_instructions_count); */
 		reset_stack(stack_a);
-		if (i == 0 || current_instructions_count < best_instructions_count)
+		if (i == CHUNK_NUMBERS_START || current_instructions_count < best_instructions_count)
 		{
-			if (current_instructions_count != 0)
-			{
-				ft_lstclear(lst, destroy_instruction_el);
-				*lst = NULL;
-				best_instructions_count = current_instructions_count;
-				try_chunk_number(stack_a, stack_b, lst, i + 1);
-			}
+			best_instructions_count = current_instructions_count;
+			best_chunk_number = i + 1;
 		}
 		ft_lstclear(&next_lst, destroy_instruction_el);
 		i++;
-		current_instructions_count = 0;
 	}
+	try_chunk_number(stack_a, stack_b, lst, best_chunk_number);
 }

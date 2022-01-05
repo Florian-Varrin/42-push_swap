@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 17:40:42 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 18:22:48 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "stack.h"
 #include "libft.h"
 
-#define CHUNK_NUMBERS 1
+#define CHUNK_NUMBERS_START 4
+#define CHUNK_NUMBERS_END 30
 
 // Sorting
 void		sort_two(t_stack *stack, t_list_el **lst);

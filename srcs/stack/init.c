@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:51:15 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 17:20:00 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 17:54:24 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ t_stack	*destroy_stack(t_stack *stack)
 		free(stack->arr);
 	if (stack && stack->sorted_arr)
 		free(stack->sorted_arr);
+	if (stack && stack->original_arr)
+		free(stack->original_arr);
 	if (stack)
 		free(stack);
 	return (NULL);
