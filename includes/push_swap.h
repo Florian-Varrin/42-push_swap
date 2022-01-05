@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 15:00:50 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 17:40:42 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "stack.h"
 #include "libft.h"
 
-#define CHUNK_SIZE 43
+#define CHUNK_NUMBERS 1
 
 // Sorting
 void		sort_two(t_stack *stack, t_list_el **lst);
@@ -27,7 +27,7 @@ void		sort_after_four_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **ls
 
 // Chunks
 void		separate_chunks_by_pivot(t_stack *stack_from, t_stack *stack_to, t_list_el **lst);
-void		separate_chunks_by_size(t_stack *stack_from, t_stack *stack_to, int chunk_start, t_list_el **lst);
+void		separate_chunks_by_size(t_stack *stack_from, t_stack *stack_to, int chunk_start, int chunk_size, t_list_el **lst);
 
 // Utils
 _Bool		stack_is_sorted(t_stack *stack);

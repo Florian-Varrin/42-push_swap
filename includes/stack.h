@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:51:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 13:22:39 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 17:20:48 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_stack {
 	int		top;
 	int		*arr;
 	int		*sorted_arr;
+	int		*original_arr;
 }	t_stack;
 
 typedef struct	s_instruction_el
@@ -39,6 +40,7 @@ void		exit_error(t_stack *stack_a, t_stack *stack_b);
 t_stack		*create_stack(int size, char identifier);
 t_stack		*destroy_stack(t_stack *stack);
 t_stack		*init_stack(int size, char **content, char identifier);
+t_stack		*reset_stack(t_stack *stack);
 
 // Operations
 void		push_stack(t_stack *stack_from, t_stack *stack_to, t_list_el **lst);
@@ -68,6 +70,7 @@ t_instruction_el	*create_instruction_el(char instruction[3], char stack_identifi
 void				print_instructions(void *instruction_input);
 void				destroy_instruction_el(void *instruction_input);
 int					optimise_instructions(t_list_el **lst);
+int					count_instructions(t_list_el *lst);
 // Debug
 void		print_stack(t_stack *stack, char *message);
 
