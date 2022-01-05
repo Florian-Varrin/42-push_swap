@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 11:46:22 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 17:46:01 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 16:31:47 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	_rotate_stack_and_inc(t_stack *stack, int *rotations, t_list_el **ls
 	}
 }
 
-static void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
+void	separate_chunks_by_pivot(t_stack *stack_from, t_stack *stack_to, t_list_el **lst)
 {
 	int		operations;
 	int		rotations;
@@ -79,13 +79,13 @@ static void	separate_chunks(t_stack *stack_from, t_stack *stack_to, t_list_el **
 			reverse_rotate_stack(stack_from, lst);
 		rotations--;
 	}
-	separate_chunks(stack_from, stack_to, lst);
+	separate_chunks_by_pivot(stack_from, stack_to, lst);
 }
 
 void	sort_until_four_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
 	if (stack_is_sorted(stack_a))
 		return ;
-	separate_chunks(stack_a, stack_b, lst);
+	separate_chunks_by_pivot(stack_a, stack_b, lst);
 	instert_in_empty_stack(stack_b, stack_a, lst);
 }

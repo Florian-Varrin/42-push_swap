@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:14:02 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/27 17:59:24 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:47:28 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void	parse_arg(
 		args = parse_multiple_arg(&first_arg[0], args_number, args, &size);
 	*stack_a = init_stack(size, args, 'a');
 	*stack_b = create_stack(size, 'b');
+	(*stack_b)->sorted_arr = (*stack_a)->sorted_arr;
 	free(args);
 }

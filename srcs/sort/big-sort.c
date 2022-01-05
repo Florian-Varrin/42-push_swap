@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:02:55 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 18:08:16 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 16:34:58 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_next_indexes(t_stack *stack_from, int chunk_start, int *top_number_inde
 	}
 }
 
-static void	separate_chunks(t_stack *stack_from, t_stack *stack_to, int chunk_start, t_list_el **lst)
+void	separate_chunks_by_size(t_stack *stack_from, t_stack *stack_to, int chunk_start, t_list_el **lst)
 {
 	int		rotations;
 	int		reverse_rotations;
@@ -78,13 +78,22 @@ static void	separate_chunks(t_stack *stack_from, t_stack *stack_to, int chunk_st
 		push_stack(stack_from, stack_to, lst);
 		pushed++;
 	}
-	separate_chunks(stack_from, stack_to, chunk_start + CHUNK_SIZE , lst);
+	separate_chunks_by_size(stack_from, stack_to, chunk_start + CHUNK_SIZE , lst);
 }
 
 void	sort_after_four_hundred(t_stack *stack_a, t_stack *stack_b, t_list_el **lst)
 {
+	int		i;
+
 	if (stack_is_sorted(stack_a))
 		return ;
-	separate_chunks(stack_a, stack_b, 0, lst);
+	separate_chunks_by_pivot(stack_a, stack_b, lst);
+	i = 0;
+	while (i < stack_a->size)
+	{
+		push_stack(stack_b, stack_a, lst);
+		i++;
+	}
+	separate_chunks_by_size(stack_a, stack_b, 0, lst);
 	instert_in_empty_stack(stack_b, stack_a, lst);
 }

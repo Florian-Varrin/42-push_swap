@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/04 17:46:52 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:49:51 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	destroy_all_and_exit(
 {
 	ft_lstclear(&instructions_list, destroy_instruction_el);
 	destroy_stack(stack_a);
+	stack_b->sorted_arr = NULL;
 	destroy_stack(stack_b);
 }
 
