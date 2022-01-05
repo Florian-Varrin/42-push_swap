@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:14:11 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/29 16:01:35 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/05 17:04:33 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,23 @@ int	optimise_instruction_for_double(t_list_el *instruction_el, char *instruction
 		return (1);
 	}
 	return (0);
+}
+
+int	count_instructions(t_list_el *lst)
+{
+	t_list_el	*current_el;
+	int			count;
+
+	count = 0;
+	if (!lst)
+		return (0);
+	current_el = lst;
+	while (current_el)
+	{
+		count++;
+		current_el = current_el->next;
+	}
+	return (count);
 }
 
 int	optimise_instructions(t_list_el **lst)
