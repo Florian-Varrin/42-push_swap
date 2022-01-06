@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:51:55 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/06 17:15:49 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/06 17:39:28 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_list_el	**parse_instructions(t_list_el **instructions_list)
 {
 	char		*str;
 
+	str = NULL;
 	*instructions_list = NULL;
 	str = ft_get_next_line(0);
 	while (str)

@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/06 17:14:46 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/06 17:28:38 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ ROOT_DIR		?= $(shell pwd)
 SRCS_DIR		= ${ROOT_DIR}/srcs/
 SORT_SRC_DIR		= ${SRCS_DIR}sort/
 STACK_SRC_DIR		= ${SRCS_DIR}stack/
-CHECKER_SRC_DIR		= ${SRCS_DIR}checker/
+CHECKER_SRC_DIR		= ${SRCS_DIR}check/
 HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
 
