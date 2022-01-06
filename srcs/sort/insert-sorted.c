@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert.c                                           :+:      :+:    :+:   */
+/*   insert-sorted.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:44:54 by fvarrin           #+#    #+#             */
-/*   Updated: 2021/12/29 16:36:32 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/06 15:07:53 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	_get_rotation_special_case(t_stack *stack, int number_to_insert)
 	{
 		i = stack_max_index(stack);
 		reverse_rotations = i;
-		rotations = stack->top - i - 1;
+		rotations = stack->top - i + 1;
 	}
 	else if (number_to_insert < stack_min_value(stack))
 	{
@@ -60,14 +60,14 @@ int	get_rotation_number_to_insert(t_stack *stack, int number_to_insert)
 		return (_get_rotation_special_case(stack, number_to_insert));
 	else if (number_to_insert < stack_min_value(stack))
 		return (_get_rotation_special_case(stack, number_to_insert));
-	else if (stack->arr[stack->top] > number_to_insert
-		&& stack->arr[0] < number_to_insert)
+	else if (stack_top_value(stack) > number_to_insert
+		&& stack_value(stack, 0) < number_to_insert)
 		return (0);
 	else
 	{
 		i = 0;
-		while (!(stack->arr[i] > number_to_insert
-				&& stack->arr[i + 1] < number_to_insert))
+		while (!(stack_value(stack, i) > number_to_insert
+				&& stack_value(stack, i + 1) < number_to_insert))
 			i++;
 		reverse_rotations = i + 1;
 		rotations = stack->top - i;
@@ -89,12 +89,13 @@ void	instert_in_ordered_stack(
 
 	while (stack_from->top != -1)
 	{
-		if (stack_from->top > 0 && stack_from->arr[stack_from->top] > stack_from->arr[stack_from->top - 1] && stack_min_index(stack_from) == stack_from->top)
+		if (stack_from->top > 0 && top_value_greater_bellow(stack_from)
+			&& stack_min_index(stack_from) == stack_from->top)
 		{
 			swap_stack(stack_from, lst);
 			continue ;
 		}
-		number_to_insert = stack_from->arr[stack_from->top];
+		number_to_insert = stack_top_value(stack_from);
 		rotations = get_rotation_number_to_insert(
 				stack_to,
 				number_to_insert

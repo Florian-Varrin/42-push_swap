@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:31:19 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/05 18:23:17 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/06 15:13:47 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ void	destroy_all_and_exit(
 	destroy_stack(stack_b);
 }
 
+void	run_sort(
+			t_stack *stack_a,
+			t_stack *stack_b,
+			t_list_el **instructions_list
+		)
+{
+	if (stack_a->size == 2)
+		sort_two(stack_a, instructions_list);
+	else if (stack_a->size == 3)
+		sort_three(stack_a, instructions_list);
+	else if (stack_a->size >= 4 && stack_a->size <= 5)
+		sort_until_five(stack_a, stack_b, instructions_list);
+	else if (stack_a->size > 5 && stack_a->size <= 400)
+		sort_until_four_hundred(stack_a, stack_b, instructions_list);
+	else
+		sort_after_four_hundred(stack_a, stack_b, instructions_list);
+}
+
 int	main(int argc, char **argv)
 {
 	int			optimisations;
@@ -40,17 +58,11 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		exit_error(NULL, NULL);
 	parse_arg(&stack_a, &stack_b, argc - 1, &argv[1]);
-	if (stack_a->size == 3)
-		sort_two(stack_a, &instructions_list);
-	else if (stack_a->size == 3)
-		sort_three(stack_a, &instructions_list);
-	else if (stack_a->size >= 4 && stack_a->size <= 5)
-		sort_until_five(stack_a, stack_b, &instructions_list);
-	else if (stack_a->size > 5 && stack_a->size <= 400)
-		sort_until_four_hundred(stack_a, stack_b, &instructions_list);
+	run_sort(stack_a, stack_b, &instructions_list);
+	if (stack_a->size > 5)
+		optimisations = -1;
 	else
-		sort_after_four_hundred(stack_a, stack_b, &instructions_list);
-	optimisations = -1;
+		optimisations = 0;
 	while (optimisations != 0)
 		optimisations = optimise_instructions(&instructions_list);
 	ft_lstiter(instructions_list, print_instructions);

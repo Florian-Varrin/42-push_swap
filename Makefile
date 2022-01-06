@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/04 17:36:23 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/06 16:32:21 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,11 @@ MLX_DIR			= ${ROOT_DIR}/minilibx/
 
 # SRCS
 SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert-sorted.c insert-empty.c \
-			  sort-utils.c small-sort.c middle-sort.c big-sort.c)
-STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c push.c swap.c rotate.c \
-			  reverse-rotate.c debug.c utils.c sorting-utils.c parse.c error.c \
-		 	  instructions.c)
+			  sort-utils.c small-sort.c middle-sort.c middle-sort-utils.c big-sort.c \
+			  big-sort-utils.c insert-utils.c)
+STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c destroy.c push.c swap.c rotate.c \
+			  reverse-rotate.c debug.c utils.c utils2.c sorting-utils.c parse.c error.c \
+		 	  instructions.c instructions-utils.c optimisations.c values.c)
 CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c visualise.c draw.c init.c input.c)
 
 # OBJS
@@ -41,7 +42,7 @@ CHECKER_NAME		= checker
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -I${MLX_DIR} -g
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -I${MLX_DIR} -O3
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
 MLX_FLAGS		= -L${MLX_DIR} -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
@@ -74,6 +75,6 @@ fclean:			clean
 
 re:			fclean ${PUSH_SWAP_NAME} ${CHECKER_NAME}
 
-norm:			fclean
+norm:			clean
 			echo "\n\n"
-			${NORM_BIN} ${NORM_FLAGS} ${STACK_SRC} ${SORT_SRC} ${CHECKER_SRC}
+			${NORM_BIN} ${NORM_FLAGS} ${STACK_SRC} ${SORT_SRC}
