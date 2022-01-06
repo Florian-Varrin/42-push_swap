@@ -6,7 +6,7 @@
 #    By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 10:27:38 by fvarrin           #+#    #+#              #
-#    Updated: 2022/01/06 16:32:21 by fvarrin          ###   ########.fr        #
+#    Updated: 2022/01/06 17:14:46 by fvarrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ STACK_SRC_DIR		= ${SRCS_DIR}stack/
 CHECKER_SRC_DIR		= ${SRCS_DIR}checker/
 HEADER_DIR		= ${ROOT_DIR}/includes/
 LIBFT_DIR		= ${ROOT_DIR}/libft/
-MLX_DIR			= ${ROOT_DIR}/minilibx/
 
 # SRCS
 SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert-sorted.c insert-empty.c \
@@ -27,7 +26,7 @@ SORT_SRC		= $(addprefix ${SORT_SRC_DIR}, main.c insert-sorted.c insert-empty.c \
 STACK_SRC		= $(addprefix ${STACK_SRC_DIR}, init.c destroy.c push.c swap.c rotate.c \
 			  reverse-rotate.c debug.c utils.c utils2.c sorting-utils.c parse.c error.c \
 		 	  instructions.c instructions-utils.c optimisations.c values.c)
-CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c visualise.c draw.c init.c input.c)
+CHECKER_SRC		= $(addprefix ${CHECKER_SRC_DIR}, main.c instructions.c)
 
 # OBJS
 SORT_OBJ		= $(SORT_SRC:.c=.o)
@@ -42,12 +41,9 @@ CHECKER_NAME		= checker
 NORM_BIN		= norminette
 NORM_FLAGS		= -RCheckForbiddenSourceHeader -RCheckDefine
 RM			= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -I${MLX_DIR} -O3
+CFLAGS			= -Wall -Wextra -Werror -I${HEADER_DIR} -I${LIBFT_DIR}includes -I${LIBSTACK_DIR}includes -O3
 CC			= gcc
 LIBFT_FLAGS		= -L${LIBFT_DIR} -lft
-MLX_FLAGS		= -L${MLX_DIR} -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-PTHREAD_FLAGS		= -lpthread
-CHECKER_FLAGS		= ${LIBFT_FLAGS} ${MLX_FLAGS} ${PTHREAD_FLAGS}
 
 .PHONY:			all clean fclean re
 
@@ -59,8 +55,7 @@ ${PUSH_SWAP_NAME}:	${STACK_OBJ} ${SORT_OBJ}
 
 ${CHECKER_NAME}:	${STACK_OBJ} ${CHECKER_OBJ}
 			@make -C --silent ${LIBFT_DIR} all || true
-			@make -C ${MLX_DIR} all || true
-			${CC} ${CFLAGS} ${CHECKER_OBJ} ${STACK_OBJ} ${CHECKER_FLAGS} -o ${CHECKER_NAME}
+			${CC} ${CFLAGS} ${CHECKER_OBJ} ${STACK_OBJ} ${LIBFT_FLAGS} -o ${CHECKER_NAME}
 
 clean:
 			${RM} ${STACK_OBJ}
@@ -77,4 +72,4 @@ re:			fclean ${PUSH_SWAP_NAME} ${CHECKER_NAME}
 
 norm:			clean
 			echo "\n\n"
-			${NORM_BIN} ${NORM_FLAGS} ${STACK_SRC} ${SORT_SRC}
+			${NORM_BIN} ${NORM_FLAGS} ${STACK_SRC} ${SORT_SRC} ${CHECKER_SRC}
