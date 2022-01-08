@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:56:09 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/06 15:11:12 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/08 13:32:50 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@ int	stack_top_value(t_stack *stack)
 
 int	stack_value(t_stack *stack, int index)
 {
+	if (index > stack->top)
+		ft_printf("too big\n");
+	if (index < 0)
+		ft_printf("too small\n");
 	return (stack->arr[index]);
 }

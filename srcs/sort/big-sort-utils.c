@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:03:18 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/06 16:10:47 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/08 13:35:32 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ static void	_set_bottom_number_index(
 	j = chunk_infos[0];
 	while (j < chunk_infos[0] + chunk_infos[1])
 	{
+		if (*i < 0 || *i > stack_from->top)
+		{
+			*bottom_number_index = 0;
+			break ;
+		}
 		if (stack_value(stack_from, *i) == stack_from->sorted_arr[j])
 		{
 			*bottom_number_index = *i;
@@ -50,6 +55,11 @@ static void	_set_top_number_index(
 	j = chunk_infos[0];
 	while (j < chunk_infos[0] + chunk_infos[1])
 	{
+		if (*i < 0 || *i > stack_from->top)
+		{
+			*top_number_index = 0;
+			break ;
+		}
 		if (stack_value(stack_from, *i) == stack_from->sorted_arr[j])
 		{
 			*top_number_index = *i;
