@@ -6,7 +6,7 @@
 /*   By: fvarrin <florian.varrin@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:42:51 by fvarrin           #+#    #+#             */
-/*   Updated: 2022/01/06 17:13:13 by fvarrin          ###   ########.fr       */
+/*   Updated: 2022/01/08 13:15:52 by fvarrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
+void	print_usage(void)
+{
+	ft_perror("Need at least one argument\n");
+	exit(-1);
+}
 
 void	destroy_all_and_exit(
 			t_stack *stack_a,
@@ -39,7 +46,7 @@ int	main(int argc, char **argv)
 
 	instructions_list = NULL;
 	if (argc == 1)
-		exit_error(NULL, NULL);
+		print_usage();
 	parse_instructions(&instructions_list);
 	if (!instructions_list)
 		exit_error(NULL, NULL);
