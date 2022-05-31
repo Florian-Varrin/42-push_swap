@@ -17,6 +17,24 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
+
+_Bool	check_arg_for_limit(char *arg)
+{
+	size_t	length;
+	long	arg_as_number;
+
+	length = ft_strlen(arg);
+	if (length > 10)
+		return (false);
+	if (length == 10)
+	{
+		arg_as_number = ft_atoi(arg);
+		if (arg_as_number > INT_MAX || arg_as_number < INT_MIN)
+			return (false);
+	}
+	return (true);
+}
 
 _Bool	check_args(char **args, int *size)
 {
@@ -26,6 +44,8 @@ _Bool	check_args(char **args, int *size)
 	i = 0;
 	while (args[i])
 	{
+		if (!check_arg_for_limit(args[i]))
+			return (false);
 		j = 0;
 		while (args[i][j])
 		{
