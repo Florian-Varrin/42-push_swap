@@ -67,5 +67,6 @@ int	main(int argc, char **argv)
 		optimisations = optimise_instructions(&instructions_list);
 	ft_lstiter(instructions_list, print_instructions);
 	destroy_all_and_exit(stack_a, stack_b, instructions_list);
+	while (1) {}
 	return (0);
 }
