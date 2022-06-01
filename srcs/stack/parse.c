@@ -76,7 +76,9 @@ char	**parse_single_arg(char *str, char **args, int *size)
 	args = ft_split(str, ' ');
 	if (!check_args(args, size))
 	{
-		free(args);
+		i = 0;
+		while (args[i])
+			free(args[i++]);
 		exit_error(NULL, NULL);
 	}
 	return (args);
