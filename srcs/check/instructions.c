@@ -104,7 +104,7 @@ _Bool	execute_instructions(
 		if (!execute_single_instruction(current_el->content, stack_a, stack_b))
 		{
 			ft_lstclear(&instructions_list, &delete_instruction);
-			exit_error(stack_a, stack_b);
+			exit_error(NULL, NULL);
 		}
 		current_el = current_el->next;
 	}
