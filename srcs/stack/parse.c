@@ -25,9 +25,9 @@ _Bool	check_arg_for_limit(char *arg)
 	long	arg_as_number;
 
 	length = ft_strlen(arg);
-	if (length > 10)
+	if (length > 11)
 		return (false);
-	if (length == 10)
+	if (length == 11)
 	{
 		arg_as_number = ft_atoi(arg);
 		if (arg_as_number > INT_MAX || arg_as_number < INT_MIN)
