@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 
 	instructions_list = NULL;
 	if (argc == 1)
-		exit_error(NULL, NULL);
+		return (1);
 	parse_arg(&stack_a, &stack_b, argc - 1, &argv[1]);
 	run_sort(stack_a, stack_b, &instructions_list);
 	if (stack_a->size > 5)

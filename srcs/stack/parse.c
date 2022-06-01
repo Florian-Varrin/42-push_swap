@@ -27,7 +27,7 @@ _Bool	check_arg_for_limit(char *arg)
 	length = ft_strlen(arg);
 	if (length > 11)
 		return (false);
-	if (length == 11)
+	if (length == 10 || length == 11)
 	{
 		arg_as_number = ft_atoi(arg);
 		if (arg_as_number > INT_MAX || arg_as_number < INT_MIN)
@@ -76,7 +76,9 @@ char	**parse_single_arg(char *str, char **args, int *size)
 	args = ft_split(str, ' ');
 	if (!check_args(args, size))
 	{
-		free(args);
+		i = 0;
+		while (args[i])
+			free(args[i++]);
 		exit_error(NULL, NULL);
 	}
 	return (args);

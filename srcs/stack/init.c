@@ -95,8 +95,9 @@ t_stack	*init_stack(int size, char **content, char identifier)
 	stack = create_stack(size, identifier);
 	while (i >= 0)
 	{
-		n = ft_atoi(content[i--]);
+		n = (int)ft_atoi(content[i]);
 		fill_stack(stack, n);
+		free(content[i--]);
 	}
 	sort_stack_arr(stack);
 	return (stack);
